@@ -26,6 +26,7 @@ abstract: We are pleased to announce the publication of our latest Research Revi
   The reviews are written by GO-GN network members who are actively researching open
   education. Covered in this collection are papers and research outputs on the themes
   of accessibility, open educational practices,
+summary: This report summarises some state-of-the-art research relevant to open educational resources (OER) and open educational practices (OEP) that was published recently. The reviews of these articles were written by doctoral and post-doctoral researchers who work in relevant fields and are members of the Global OER Graduate Network (GO-GN).
 links:
 - name: URL
   url: https://go-gn.net/gogn_outputs/research-review-2022/

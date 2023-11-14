@@ -87,6 +87,7 @@ abstract: This Handbook draws together work done between 2020 and 2023 by member
   people who wouldn’t describe themselves as researchers still do research and evaluation.
   Presenting accessible insights into research foundations and practices helps with
   this and can be understood as a form of open practice.
+summary: This Handbook draws together work done between 2020 and 2023 by members of the Global OER Graduate Network (GO-GN). GO-GN is a network of PhD candidates around the world whose research projects include a focus on open education.
 links:
 - name: URL
   url: https://oro.open.ac.uk/88358/
