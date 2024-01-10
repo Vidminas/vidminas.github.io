@@ -100,20 +100,26 @@ social:
   - icon: google-scholar
     icon_pack: ai
     link: https://scholar.google.com/citations?user=na63fGUAAAAJ&hl=en
+    display:
+      header: false
   - icon: github
     icon_pack: fab
     link: https://github.com/Vidminas
     label: github.com/Vidminas
+    display:
+      header: false
   - icon: twitter
     icon_pack: fab
     link: https://twitter.com/Vidminas
     label: twitter.com/Vidminas
     display:
-      header: true
+      header: false
   - icon: linkedin
     icon_pack: fab
     link: http://www.linkedin.com/in/vidminas
     label: linkedin.com/in/vidminas
+    display:
+      header: false
   # Link to a PDF of your resume/CV.
   # To use: copy your resume to `static/uploads/resume.pdf`, enable `ai` icons in `params.yaml`,
   # and uncomment the lines below.
