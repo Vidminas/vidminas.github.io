@@ -234,6 +234,7 @@ sections:
           date_end: '2023-06-28'
           description: |2-
             Presented short talk on "Practical approaches to freeing university material stockpiles".
+            
             [Slides and recording](https://blogs.ed.ac.uk/learning-teaching-conference-2023/oak-session-3/)
         - title: CHI 23
           company:
@@ -242,7 +243,10 @@ sections:
           location: Hamburg, Germany (attended online)
           date_start: '2023-04-23'
           date_end: '2023-04-28'
-          description: Supported presentation on new co-authored paper [‘You are you and the app. There’s nobody else.’ Building Worker-Designed Data Institutions within Platform Hegemony](https://doi.org/10.1145/3544548.3581114)
+          description: |2-
+            Supported presentation on new co-authored paper [‘You are you and the app. There’s nobody else.’ Building Worker-Designed Data Institutions within Platform Hegemony](https://doi.org/10.1145/3544548.3581114)
+
+            [Easy read summary on Kudos ACM Showcase](https://www.growkudos.com/publications/10.1145%25252F3544548.3581114/reader)
         - title: Open Educational Resources 23
           company: 
           company_url: 'https://altc.alt.ac.uk/oer23/'
@@ -263,7 +267,10 @@ sections:
           location: London, England,
           date_start: '2023-04-26'
           date_end: '2023-04-28'
-          description: Presented "Learning resource hide and seek" in lightning talks round
+          description: |2-
+            Presented "Learning resource hide and seek" in lightning talks round
+
+            [Reflections post on GO-GN blog](https://go-gn.net/gogn/go-gn-workshop-and-oer22/)
     design:
       columns: '2'
       view: 'compact'
