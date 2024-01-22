@@ -185,15 +185,88 @@ sections:
       columns: '1'
       view: citation
   # - block: collection
-  #   id: talks
+  #   id: conferences
   #   content:
-  #     title: Recent & Upcoming Talks
+  #     title: Conferences and Presentations
   #     filters:
   #       folders:
   #         - event
   #   design:
   #     columns: '2'
   #     view: compact
+
+  # text: |
+  #       Edinburgh Learning and Teaching Conference, Edinburgh, June 2023 -- talk on "resources"
+  #       OER23, Inverness, March 2023 -- talk on "OER"
+
+  - block: conferences
+    id: conferences
+    content:
+      title: Conferences and Presentations
+      # Date format for experience
+      #   Refer to https://docs.hugoblox.com/customization/#date-format
+      date_format: Jan 2, 2006
+      # Experiences.
+      #   Add/remove as many `experience` items below as you like.
+      #   Required fields are `title`, `company`, and `date_start`.
+      #   Leave `date_end` empty if it's your current employer.
+      #   Begin multi-line descriptions with YAML's `|2-` multi-line prefix.
+      items:
+        - title: Open Education Global 2023
+          company:
+          company_url: 'https://conference.oeglobal.org/2023/'
+          company_logo: oeg-logo.svg
+          location: Edmonton, Alberta, Canada
+          date_start: '2023-10-16'
+          date_end: '2023-10-18'
+          description: |2-
+            Ran an action lab (workshop) on "Reinvent the Wheel or Find the Needle? Technology for Addressing Resource Reusability Barriers".
+
+            [Session details](https://oeglobal2023.sched.com/event/1S7jw/reinvent-the-wheel-or-find-the-needle-technology-for-addressing-resource-reusability-barriers)
+
+            [Reflections post on SICSA blog](https://www.sicsa.ac.uk/blog/sicsa-opening-doors-for-open-education-research/)
+        - title: Edinburgh Learning and Teaching Conference 2023
+          company: 
+          company_url: 'https://blogs.ed.ac.uk/learning-teaching-conference-2023/'
+          company_logo: uoe-ltc-banner_crop.jpeg
+          location: Edinburgh, Scotland
+          date_start: '2023-06-27'
+          date_end: '2023-06-28'
+          description: |2-
+            Presented short talk on "Practical approaches to freeing university material stockpiles".
+            [Slides and recording](https://blogs.ed.ac.uk/learning-teaching-conference-2023/oak-session-3/)
+        - title: CHI 23
+          company:
+          company_url: 'https://chi2023.acm.org/'
+          company_logo: chi_logo-192x192.webp
+          location: Hamburg, Germany (attended online)
+          date_start: '2023-04-23'
+          date_end: '2023-04-28'
+          description: Supported presentation on new co-authored paper [‘You are you and the app. There’s nobody else.’ Building Worker-Designed Data Institutions within Platform Hegemony](https://doi.org/10.1145/3544548.3581114)
+        - title: Open Educational Resources 23
+          company: 
+          company_url: 'https://altc.alt.ac.uk/oer23/'
+          company_logo: OER23-logo-4.png
+          location: Inverness, Scotland
+          date_start: '2023-04-03'
+          date_end: '2023-04-07'
+          description: |2-
+            Presented work-in-progress findings on "Practical approaches to freeing university material stockpiles".
+
+            [Recording](https://www.youtube.com/watch?v=332nDZkAN5o&list=PLxoWy14N6f8tB1sudj4Lof0bwq5Mzjwdk&index=32)
+
+            [Reflections post on GO-GN blog](https://go-gn.net/seminar/oer23-reflections-vidminas-vizgirda/)
+        - title: Open Educational Resources 22
+          company:
+          company_url: https://web.archive.org/web/20220314133554/https://altc.alt.ac.uk/oer22/
+          company_logo: OER22_0.jpg
+          location: London, England,
+          date_start: '2023-04-26'
+          date_end: '2023-04-28'
+          description: Presented "Learning resource hide and seek" in lightning talks round
+    design:
+      columns: '2'
+      view: 'compact'
   - block: tag_cloud
     content:
       title: Popular Topics
