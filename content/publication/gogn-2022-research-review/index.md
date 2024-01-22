@@ -31,3 +31,10 @@ links:
 - name: URL
   url: https://go-gn.net/gogn_outputs/research-review-2022/
 ---
+
+This report summarises some state-of-the-art research
+relevant to open educational resources (OER) and open
+educational practices (OEP) that was published recently.
+The reviews of these articles were written by doctoral and
+post-doctoral researchers who work in relevant fields and
+are members of the Global OER Graduate Network (GO-GN).
