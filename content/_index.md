@@ -147,7 +147,7 @@ sections:
     design:
       # Choose how many columns the section has. Valid values: '1' or '2'.
       columns: '1'
-      view: showcase
+      view: compact-showcase
       # For Showcase view, flip alternate rows?
       flip_alt_rows: false
   # - block: markdown
@@ -202,7 +202,7 @@ sections:
   - block: conferences
     id: conferences
     content:
-      title: Conferences and Presentations
+      title: Conference Presentations
       # Date format for experience
       #   Refer to https://docs.hugoblox.com/customization/#date-format
       date_format: Jan 2, 2006
