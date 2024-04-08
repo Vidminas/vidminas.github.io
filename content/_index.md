@@ -212,6 +212,25 @@ sections:
       #   Leave `date_end` empty if it's your current employer.
       #   Begin multi-line descriptions with YAML's `|2-` multi-line prefix.
       items:
+        - title: Open Educational Resources 24
+          company: 
+          company_url: 'https://www.oer2024.co.uk/'
+          company_logo: OER24_Logo_and_Strapline.png
+          # company_logo: test.png
+          location: Cork, Ireland
+          date_start: '2024-03-26'
+          date_end: '2024-03-28'
+          description: |2-
+            Participated in the [GO-GN workshop](https://go-gn.net/gogn/join-go-gn-at-oer24/) and presented a talk on "Search and AI for schoolteachers in Scotland" with work-in-progress research findings.
+        - title: ACM SIGIR Conference on Human Information Interaction and Retrieval (CHIIR) 2024
+          company:
+          company_url: 'https://chiir2024.github.io/index.html'
+          company_logo: CHIIR2024_logo_header.png
+          location: Sheffield, England
+          date_start: '2024-03-10'
+          date_end: '2024-03-14'
+          description: |2-
+            Participated in the Doctoral Consortium and presented extended abstract describing my research: [Educational Resource Search in Scottish Schools](https://doi.org/10.1145/3627508.3638320)
         - title: Open Education Global 2023
           company:
           company_url: 'https://conference.oeglobal.org/2023/'
@@ -264,7 +283,7 @@ sections:
           company:
           company_url: https://web.archive.org/web/20220314133554/https://altc.alt.ac.uk/oer22/
           company_logo: OER22_0.jpg
-          location: London, England,
+          location: London, England
           date_start: '2023-04-26'
           date_end: '2023-04-28'
           description: |2-

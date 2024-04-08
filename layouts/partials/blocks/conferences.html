@@ -55,7 +55,7 @@
           {{- $logo_icon := resources.Get (printf "media/icons/brands/%s" .company_logo) -}}
           {{ if not $logo_icon }}{{ errorf "Brand logo not found at `assets/media/icons/brands/%s`" .company_logo }}{{end}}
           <div class="d-flex align-content-start">
-            <div class="mr-2 mb-2">
+            <div class="mr-2 mb-2 align-content-center">
               {{- with .company_url}}<a href="{{.}}" target="_blank" rel="noopener">{{end -}}
               <img src="{{ $logo_icon.RelPermalink }}" width="56" height="56" alt="{{.company | plainify}}" loading="lazy">
               {{- with .company_url}}</a>{{end -}}
