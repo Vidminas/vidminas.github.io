@@ -8,6 +8,8 @@ publication_types:
 - paper-conference
 publication: 'Proceedings of the 2024 ACM SIGIR Conference on Human Information Interaction and Retrieval'
 doi: 10.1145/3627508.3638320
+projects:
+- scotland-resources-discoverability
 links:
 - name: URL
   url: https://dl.acm.org/doi/10.1145/3627508.3638320
