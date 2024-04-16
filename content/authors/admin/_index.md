@@ -30,8 +30,9 @@ bio: ''
 # Interests to show in About widget
 interests:
   - Human-Computer Interaction
-  - Education
-  - Information Retrieval
+  - Primary/Secondary/Tertiary Education
+  - Information Seeking and Retrieval
+  - Information Interaction and Behaviour
   - Generative AI
 
 # Education to show in About widget
