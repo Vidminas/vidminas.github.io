@@ -57,7 +57,7 @@
           <div class="d-flex align-content-start">
             <div class="mr-2 mb-2 align-content-center">
               {{- with .company_url}}<a href="{{.}}" target="_blank" rel="noopener">{{end -}}
-              <img src="{{ $logo_icon.RelPermalink }}" width="56" height="56" alt="{{.company | plainify}}" loading="lazy">
+              <img src="{{ $logo_icon.RelPermalink }}" height="56" alt="{{.company | plainify}}" loading="lazy" style="max-width: 200px; max-height: 56px;">
               {{- with .company_url}}</a>{{end -}}
             </div>
             <div>
