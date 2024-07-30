@@ -212,11 +212,20 @@ sections:
       #   Leave `date_end` empty if it's your current employer.
       #   Begin multi-line descriptions with YAML's `|2-` multi-line prefix.
       items:
+        - title: ACM Web Conference 2024
+          company:
+          company_url: 'https://www2024.thewebconf.org/'
+          company_logo: theWebConf2024-logo.png
+          location: Singapore, Singapore
+          date_start: '2024-05-13'
+          date_end: '2024-05-17'
+          description: |2-
+            Presented a poster and live demo about SocialGenPod -- a prototype showcasing retrieval augmented generation with private data using Solid.
+            More information and resources are linked from the [project website](https://vidminas.github.io/socialgenpod/).
         - title: Open Educational Resources 24
           company: 
           company_url: 'https://www.oer2024.co.uk/'
           company_logo: OER24_Logo_and_Strapline.png
-          # company_logo: test.png
           location: Cork, Ireland
           date_start: '2024-03-26'
           date_end: '2024-03-28'
