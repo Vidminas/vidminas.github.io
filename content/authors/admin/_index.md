@@ -30,10 +30,10 @@ bio: ''
 # Interests to show in About widget
 interests:
   - Human-Computer Interaction
-  - Primary/Secondary/Tertiary Education
-  - Information Seeking and Retrieval
-  - Information Interaction and Behaviour
-  - Generative AI
+  - Education
+  - Information Seeking and Behaviour
+  - Information Retrieval
+  - Retrieval Augmented Generation
 
 # Education to show in About widget
 education:
@@ -138,4 +138,3 @@ I am looking for ways to improve search for educational resources, so that teach
 
 Originally, I come from Lithuania, although I grew up in Luxembourg and moved to Edinburgh for my undegraduate degree in computer science and management science. I am always keen to chat about teaching, human-computer interaction, participatory research, and machine learning applications in education, feel free to get in touch!
 
-{style="text-align: justify;"}
