@@ -212,6 +212,28 @@ sections:
       #   Leave `date_end` empty if it's your current employer.
       #   Begin multi-line descriptions with YAML's `|2-` multi-line prefix.
       items:
+        - title: ACM SIGIR Conference on Human Information Interaction and Retrieval (CHIIR) 2025
+          company:
+          company_url: 'https://chiir2025.github.io/'
+          company_logo: chiir25.png
+          location: Melbourne, Australia
+          date_start: '2025-03-24'
+          date_end: '2025-03-28'
+          description: |2-
+            Presented a full paper ["Teacher Online Educational Resource Search in Education System Context"](https://dl.acm.org/doi/10.1145/3698204.3716448) and a demo ["Crowdsourced and Automated Educational Resource Metadata"](https://dl.acm.org/doi/10.1145/3698204.3716472) from my PhD research.
+        - title: Open Education Global 2024
+          company:
+          company_url: 'https://conference.oeglobal.org/2024/'
+          company_logo: oeg-logo.svg
+          location: Brisbane, Australia
+          date_start: '2024-11-13'
+          date_end: '2024-11-15'
+          description: |2-
+            Supported an expert panel discussion and showcased video with interview excerpts about the meanings of "open" AI in open education.
+
+            [Session details](https://oeglobal2024.sched.com/event/1pHRs/exploring-the-notions-of-open-ai-in-education-id-29)
+            
+            Clips and full interviews are available on [YouTube @OpenEdAI](http://youtube.com/@OpenEdAI).
         - title: ACM Web Conference 2024
           company:
           company_url: 'https://www2024.thewebconf.org/'
@@ -239,7 +261,7 @@ sections:
           date_start: '2024-03-10'
           date_end: '2024-03-14'
           description: |2-
-            Participated in the Doctoral Consortium and presented extended abstract describing my research: [Educational Resource Search in Scottish Schools](https://doi.org/10.1145/3627508.3638320)
+            Participated in the Doctoral Consortium and presented extended abstract describing my PhD research: [Educational Resource Search in Scottish Schools](https://doi.org/10.1145/3627508.3638320)
         - title: Open Education Global 2023
           company:
           company_url: 'https://conference.oeglobal.org/2023/'

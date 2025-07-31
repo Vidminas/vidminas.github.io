@@ -133,7 +133,7 @@ highlight_name: true
 
 Hi 👋😊! I'm Vidminas (most people call me Vid), a postdoc on the [CHAILD](https://chaild.org/) project splitting time between the [Department of Computer Science, University of Oxford](https://www.cs.ox.ac.uk/) and the [Institute of Education, University College London](https://www.ucl.ac.uk/ioe/).
 
-I am interested in technology and education, and more specifically researching and developing technologies that empower people. The current CHAILD project focus is about designing for agency in children and young people's use of AI tools.
+I am interested in technology and education, and more specifically researching and developing technologies that empower people. The current CHAILD project focus is about defining and designing for agency in children and young people's use of AI tools.
 
 Before this, I did my PhD at the [Institute of Language Cognition and Computation](https://web.inf.ed.ac.uk/ilcc) at the University of Edinburgh. My then-supervisors are [Professor Fiona McNeill](https://homepages.inf.ed.ac.uk/fmcneill/) and [Professor Judy Robertson](https://edwebprofiles.ed.ac.uk/profile/judy-robertson). The project was about better understanding and designing tools to help teachers search for educational resources.
 
