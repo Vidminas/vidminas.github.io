@@ -17,12 +17,12 @@ status:
 superuser: true
 
 # Role/position/tagline
-role: PhD Student
+role: Postdoctoral Research Associate
 
 # Organizations/Affiliations to show in About widget
 organizations:
-  - name: University of Edinburgh
-    url: https://www.ed.ac.uk/
+  - name: University of Oxford
+    url: https://www.ox.ac.uk/
 
 # Short bio (displayed in user profile at end of posts)
 bio: ''
@@ -32,8 +32,7 @@ interests:
   - Human-Computer Interaction
   - Education
   - Information Seeking and Behaviour
-  - Information Retrieval
-  - Retrieval Augmented Generation
+  - Child-Centred AI
 
 # Education to show in About widget
 education:
@@ -132,9 +131,10 @@ social:
 highlight_name: true
 ---
 
-Hi 👋😊! I'm Vidminas (most people call me Vid), a PhD student in the [Institute of Language Cognition and Computation](https://web.inf.ed.ac.uk/ilcc) at the University of Edinburgh. My primary supervisor is [Fiona McNeill](https://homepages.inf.ed.ac.uk/fmcneill/).
+Hi 👋😊! I'm Vidminas (most people call me Vid), a postdoc on the [CHAILD](https://chaild.org/) project splitting time between the [Department of Computer Science, University of Oxford](https://www.cs.ox.ac.uk/) and the [Institute of Education, University College London](https://www.ucl.ac.uk/ioe/).
 
-I am looking for ways to improve search for educational resources, so that teachers in schools across the world can reuse each others' work instead of creating their own materials all the time.
+I am interested in technology and education, and more specifically researching and developing technologies that empower people. The current CHAILD project focus is about designing for agency in children and young people's use of AI tools.
 
-Originally, I come from Lithuania, although I grew up in Luxembourg and moved to Edinburgh for my undegraduate degree in computer science and management science. I am always keen to chat about teaching, human-computer interaction, participatory research, and machine learning applications in education, feel free to get in touch!
+Before this, I did my PhD at the [Institute of Language Cognition and Computation](https://web.inf.ed.ac.uk/ilcc) at the University of Edinburgh. My then-supervisors are [Professor Fiona McNeill](https://homepages.inf.ed.ac.uk/fmcneill/) and [Professor Judy Robertson](https://edwebprofiles.ed.ac.uk/profile/judy-robertson). The project was about better understanding and designing tools to help teachers search for educational resources.
 
+I am always keen to chat about teaching and learning, human-computer interaction, participatory research, and designing applications for good, feel free to get in touch!
