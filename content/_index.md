@@ -206,13 +206,16 @@ sections:
     id: conferences
     content:
       title: Conference Presentations
-      # Date format for experience
+      # Date format for presentations
       #   Refer to https://docs.hugoblox.com/customization/#date-format
-      date_format: Jan 2, 2006
-      # Experiences.
-      #   Add/remove as many `experience` items below as you like.
-      #   Required fields are `title`, `company`, and `date_start`.
-      #   Leave `date_end` empty if it's your current employer.
+      date_format: '2 Jan 2006'
+      # Number of presentations shown by default (unquoted integer); the rest
+      # go behind the "Show all" button. Items are shown newest-first — add new
+      # talks at the top of `items`.
+      count: 3
+      # Presentations.
+      #   Add/remove as many items below as you like.
+      #   Required fields are `title` and `date_start`.
       #   Begin multi-line descriptions with YAML's `|2-` multi-line prefix.
       items:
         - title: ACM SIGIR Conference on Human Information Interaction and Retrieval (CHIIR) 2025
@@ -318,8 +321,8 @@ sections:
           company_url: https://web.archive.org/web/20220314133554/https://altc.alt.ac.uk/oer22/
           company_logo: OER22_0.jpg
           location: London, England
-          date_start: '2023-04-26'
-          date_end: '2023-04-28'
+          date_start: '2022-04-26'
+          date_end: '2022-04-28'
           description: |2-
             Presented "Learning resource hide and seek" in lightning talks round
 

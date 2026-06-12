@@ -1,5 +1,5 @@
-{{/* Hugo Blox: Experience */}}
-{{/* Documentation: https://hugoblox.com/blocks/ */}}
+{{/* Hugo Blox: Conference Presentations (compact list) */}}
+{{/* Based on the theme's Experience block. */}}
 {{/* License: https://github.com/HugoBlox/hugo-blox-builder/blob/main/LICENSE.md */}}
 
 {{/* Initialise */}}
@@ -22,76 +22,36 @@
       {{end}}
     {{end}}
 
-    <!-- Experience widget -->
 <div class="col-12 {{if eq $columns "2"}}col-lg-8{{end}}">
   {{ with $block.content.text }}{{ . | emojify | $page.RenderString }}{{ end }}
 
   {{ if $block.content.items }}
-  {{ $exp_len := len $block.content.items }}
+    {{ $items := $block.content.items }}
+    {{ $total := len $items }}
+    {{ $count := $block.content.count | default 3 | int }}
 
-  {{/* Default to user's custom order (as requested in #1761) as Hugo doesn't support multiple sorts on params. */}}
-  {{ range $idx, $key := $block.content.items }}
-  <div class="row experience">
-    <!-- Timeline -->
-    <div class="col-auto text-center flex-column d-none d-sm-flex">
-      <div class="row h-50">
-        <div class="col {{if gt $idx 0}}border-right{{end}}">&nbsp;</div>
-        <div class="col">&nbsp;</div>
+    {{/* Items are kept newest-first in content/_index.md; YAML order is preserved. */}}
+    {{ range first $count $items }}
+      {{ partial "blocks/conference-item.html" (dict "item" . "block" $block) }}
+    {{ end }}
+
+    {{ if gt $total $count }}
+      <div class="collapse" id="conference-archive">
+        {{ range after $count $items }}
+          {{ partial "blocks/conference-item.html" (dict "item" . "block" $block) }}
+        {{ end }}
       </div>
-      <div class="m-2">
-        <span class="badge badge-pill border {{if not .date_end}}exp-fill{{end}}">&nbsp;</span>
+      {{/* Same style as the collection block's "See all publications" link. */}}
+      <div class="see-all">
+        <a href="#conference-archive" role="button"
+           class="conference-toggle collapsed"
+           data-toggle="collapse"
+           aria-expanded="false" aria-controls="conference-archive">
+          <span class="label-collapsed">Show all {{ $total }} presentations <i class="fas fa-angle-down"></i></span>
+          <span class="label-expanded">Show fewer <i class="fas fa-angle-up"></i></span>
+        </a>
       </div>
-      <div class="row h-50">
-        <div class="col {{if lt $idx (sub $exp_len 1)}}border-right{{end}}">&nbsp;</div>
-        <div class="col">&nbsp;</div>
-      </div>
-    </div>
-    <!-- Content -->
-    <div class="col py-0">
-      <div class="card">
-        <div class="card-body">
-
-          {{- if .company_logo}}
-          {{- $logo_icon := resources.Get (printf "media/icons/brands/%s" .company_logo) -}}
-          {{ if not $logo_icon }}{{ errorf "Brand logo not found at `assets/media/icons/brands/%s`" .company_logo }}{{end}}
-          <div class="d-flex align-content-start">
-            <div class="mr-2 mb-2 align-content-center">
-              {{- with .company_url}}<a href="{{.}}" target="_blank" rel="noopener">{{end -}}
-              <img src="{{ $logo_icon.RelPermalink }}" height="56" alt="{{.company | plainify}}" loading="lazy" style="max-width: 200px; max-height: 56px;">
-              {{- with .company_url}}</a>{{end -}}
-            </div>
-            <div>
-          {{ end }}
-
-              <div class="section-subheading card-title exp-title text-muted my-0">{{.title | markdownify | emojify}}</div>
-              <div class="section-subheading card-title exp-company text-muted my-0">
-                {{- with .company_url}}<a href="{{.}}" target="_blank" rel="noopener">{{end}}{{.company | markdownify | emojify}}{{with .company_url}}</a>{{end -}}
-              </div>
-              <div class="text-muted exp-meta">
-                {{ (time .date_start) | time.Format ($block.Params.date_format | default "2 Jan 2006") }} –
-                {{ if .date_end}}
-                  {{ (time .date_end) | time.Format ($block.Params.date_format | default "2 Jan 2006") }}
-                {{else}}
-                  {{ i18n "present" | default "Present" }}
-                {{end}}
-                {{with .location}}
-                  <span class="middot-divider"></span>
-                  <span>{{.}}</span>
-                {{end}}
-              </div>
-
-          {{- if .company_logo}}
-            </div>
-          </div>
-          {{end}}
-
-          {{with .description}}<div class="card-text pb-0 pl-0 lh-sm">{{. | markdownify | emojify}}</div>{{end}}
-        </div>
-      </div>
-    </div>
-  </div>
-
-  {{end}}
-  {{end}}
+    {{ end }}
+  {{ end }}
 </div>
 </div>
