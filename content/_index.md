@@ -5,7 +5,10 @@ date: 2023-11-14
 type: landing
 
 sections:
-  - block: about.biography
+  # `about-biography` is a project copy of the module's `about.biography` block
+  # (layouts/_partials/blocks/about-biography.html). The dotted name collides with
+  # `about.avatar` in Hugo 0.146+'s template store, which renders the wrong layout.
+  - block: about-biography
     id: about
     content:
       title: About Me
