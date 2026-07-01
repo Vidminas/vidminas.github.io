@@ -5,6 +5,7 @@ event_url: 'https://altc.alt.ac.uk/oer23/'
 location: Inverness, Scotland
 event_start: '2023-04-03'
 event_end: '2023-04-07'
+event_all_day: true
 authors:
 - admin
 image:

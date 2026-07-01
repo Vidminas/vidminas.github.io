@@ -5,6 +5,7 @@ event_url: 'https://conference.oeglobal.org/2023/'
 location: Edmonton, Alberta, Canada
 event_start: '2023-10-16'
 event_end: '2023-10-18'
+event_all_day: true
 authors:
 - admin
 image:

@@ -5,6 +5,7 @@ event_url: 'https://www2024.thewebconf.org/'
 location: Singapore, Singapore
 event_start: '2024-05-13'
 event_end: '2024-05-17'
+event_all_day: true
 authors:
 - admin
 image:

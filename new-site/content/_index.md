@@ -62,7 +62,7 @@ sections:
           - events
     design:
       columns: '1'
-      view: card
+      view: event-row
   - block: markdown
     id: topics
     content:

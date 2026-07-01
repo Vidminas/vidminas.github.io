@@ -5,6 +5,7 @@ event_url: 'https://chiir2025.github.io/'
 location: Melbourne, Australia
 event_start: '2025-03-24'
 event_end: '2025-03-28'
+event_all_day: true
 authors:
 - admin
 image:

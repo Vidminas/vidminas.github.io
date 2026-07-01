@@ -5,6 +5,7 @@ event_url: 'https://www.oer2024.co.uk/'
 location: Cork, Ireland
 event_start: '2024-03-26'
 event_end: '2024-03-28'
+event_all_day: true
 authors:
 - admin
 image:

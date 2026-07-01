@@ -5,6 +5,7 @@ event_url: 'https://chiir2024.github.io/index.html'
 location: Sheffield, England
 event_start: '2024-03-10'
 event_end: '2024-03-14'
+event_all_day: true
 authors:
 - admin
 image:

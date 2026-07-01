@@ -5,6 +5,7 @@ event_url: 'https://chi2023.acm.org/'
 location: Hamburg, Germany (attended online)
 event_start: '2023-04-23'
 event_end: '2023-04-28'
+event_all_day: true
 authors:
 - admin
 image:

@@ -5,6 +5,7 @@ event_url: https://web.archive.org/web/20220314133554/https://altc.alt.ac.uk/oer
 location: London, England
 event_start: '2022-04-26'
 event_end: '2022-04-28'
+event_all_day: true
 authors:
 - admin
 image:
