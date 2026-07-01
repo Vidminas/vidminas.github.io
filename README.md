@@ -9,6 +9,10 @@ It uses the final releases of the legacy Bootstrap-based Hugo Blox module line, 
 - `blox-bootstrap/v5` @ `v5.9.8-0.20250819232439-62f5b139d3c5` (last commit before the module was retired, includes Hugo 0.146–0.148 compatibility fixes)
 - `blox-core` v0.4.1, `blox-seo` v0.3.1, `blox-plugin-reveal` v1.2.4, `blox-plugin-netlify` v1.2.0 (final tags)
 
+Hugo Blox may require a specific [version of Hugo](https://github.com/gohugoio/hugo/releases/). See the supported versions for the latest Hugo Blox release on GitHub here: <https://github.com/HugoBlox/kit/releases>.
+
+Update modules with `hugo mod get -u`.
+
 ⚠️ Do **not** run `hugo mod get -u`: this module line is end-of-life and there are no newer compatible versions. Upstream development moved to the Tailwind-based [HugoBlox/kit](https://github.com/HugoBlox/kit), so updating further means migrating the whole site to the new [Academic CV template](https://github.com/HugoBlox/hugo-theme-academic-cv) (new config format, Node/pnpm toolchain, and rewriting the custom partials in `layouts/_partials/`).
 
 Note: `layouts/_partials/blocks/about-biography.html` is a project copy of the module's `about.biography` block — dotted template names collide in Hugo 0.146+ and render the wrong layout, so avoid enabling dotted blocks (e.g. `about.avatar`) directly.
