@@ -1,0 +1,62 @@
+schema: hugoblox/author/v1
+slug: admin
+is_owner: true
+
+name:
+  display: Vidminas Vizgirda
+  given: Vidminas
+  family: Vizgirda
+  alternate: ''
+  pronunciation: ''
+  pronouns: ''
+
+status:
+  icon: "🍵"
+
+role: Postdoctoral Research Associate
+
+bio: |
+  Hi 👋😊! I'm Vidminas (most people call me Vid), a postdoc on the [CHAILD](https://chaild.org/) project splitting time between the [Department of Computer Science, University of Oxford](https://www.cs.ox.ac.uk/) and the [Institute of Education, University College London](https://www.ucl.ac.uk/ioe/).
+
+  I am interested in technology and education, and more specifically researching and developing technologies that empower people. The current CHAILD project focus is about defining and designing for agency in children and young people's use of AI tools.
+
+  Before this, I did my PhD at the [Institute of Language Cognition and Computation](https://web.inf.ed.ac.uk/ilcc) at the University of Edinburgh. My then-supervisors are [Professor Fiona McNeill](https://homepages.inf.ed.ac.uk/fmcneill/) and [Professor Judy Robertson](https://edwebprofiles.ed.ac.uk/profile/judy-robertson). The project was about better understanding and designing tools to help teachers search for educational resources.
+
+  I am always keen to chat about teaching and learning, human-computer interaction, participatory research, and designing applications for good, feel free to get in touch!
+
+affiliations:
+  - name: University of Oxford
+    url: https://www.ox.ac.uk/
+
+links:
+  - icon: academicons/google-scholar
+    url: https://scholar.google.com/citations?user=na63fGUAAAAJ&hl=en
+  - icon: brands/github
+    url: https://github.com/Vidminas
+    label: github.com/Vidminas
+  - icon: brands/x
+    url: https://twitter.com/Vidminas
+    label: twitter.com/Vidminas
+  - icon: brands/linkedin
+    url: http://www.linkedin.com/in/vidminas
+    label: linkedin.com/in/vidminas
+
+interests:
+  - Human-Computer Interaction
+  - Education
+  - Information Seeking and Behaviour
+  - Child-Centred AI
+
+education:
+  - degree: PhD in Informatics
+    institution: University of Edinburgh
+    start: 2021-09-01
+    end: 2025-06-30
+  - degree: PgCAP Postgraduate Certificate in Academic Practice
+    institution: University of Edinburgh
+    start: 2021-09-01
+    end: 2023-06-30
+  - degree: BSc Computer Science and Management Science (Honours)
+    institution: University of Edinburgh
+    start: 2017-09-01
+    end: 2021-06-30
