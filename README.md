@@ -1,22 +1,17 @@
 # vidminas.github.io
 
-Personal homepage. Created with [Hugo Academic CV Theme](https://github.com/HugoBlox/theme-academic-cv).
+Personal homepage. Built with the [Academic CV](https://github.com/HugoBlox/hugo-theme-academic-cv) template on [HugoBlox/kit](https://github.com/HugoBlox/kit) (Tailwind-based).
 
-The site is built with [Hugo Extended 0.148.2](https://github.com/gohugoio/hugo/releases/tag/v0.148.2) (pinned in `.github/workflows/publish.yaml` and `netlify.toml` — keep all in sync when upgrading).
+The site is built with [Hugo Extended](https://github.com/gohugoio/hugo/releases), pinned in `hugoblox.yaml` (`build.hugo_version`) — `.github/workflows/build.yml` and `.github/workflows/deploy.yml` read this value directly, so it only needs updating in one place. `netlify.toml` still pins its own copy separately for Netlify preview builds; keep it in sync by hand when bumping the version.
 
-It uses the final releases of the legacy Bootstrap-based Hugo Blox module line, pinned in `go.mod`:
+Hugo Modules are pinned in `go.mod`:
 
-- `blox-bootstrap/v5` @ `v5.9.8-0.20250819232439-62f5b139d3c5` (last commit before the module was retired, includes Hugo 0.146–0.148 compatibility fixes)
-- `blox-core` v0.4.1, `blox-seo` v0.3.1, `blox-plugin-reveal` v1.2.4, `blox-plugin-netlify` v1.2.0 (final tags)
+- `github.com/HugoBlox/kit/modules/blox` — core theme (blocks, layouts, SEO)
+- `github.com/HugoBlox/kit/modules/integrations/netlify` — Netlify forms/identity
+- `github.com/HugoBlox/kit/modules/slides` — Markdown/reveal.js slide decks
 
-Hugo Blox may require a specific [version of Hugo](https://github.com/gohugoio/hugo/releases/). See the supported versions for the latest Hugo Blox release on GitHub here: <https://github.com/HugoBlox/kit/releases>.
+Update modules with `pnpm dlx hugoblox upgrade` (also runs automatically most Mondays via `.github/workflows/upgrade.yml`, opening a PR).
 
-Update modules with `hugo mod get -u`.
+Requires Node.js and [pnpm](https://pnpm.io/). For local development: `pnpm install`, then `pnpm dev` (runs `hugo server`).
 
-⚠️ Do **not** run `hugo mod get -u`: this module line is end-of-life and there are no newer compatible versions. Upstream development moved to the Tailwind-based [HugoBlox/kit](https://github.com/HugoBlox/kit), so updating further means migrating the whole site to the new [Academic CV template](https://github.com/HugoBlox/hugo-theme-academic-cv) (new config format, Node/pnpm toolchain, and rewriting the custom partials in `layouts/_partials/`).
-
-Note: `layouts/_partials/blocks/about-biography.html` is a project copy of the module's `about.biography` block — dotted template names collide in Hugo 0.146+ and render the wrong layout, so avoid enabling dotted blocks (e.g. `about.avatar`) directly.
-
-For local development, run `hugo server` in the project directory.
-
-To import publications, export collection from Zotero in BibTeX format (or BibLaTeX, both seem to work) and save it to `publications.bib` in this project directory. Then install the `academic` Python package and run `academic import --bibtex publications.bib --publication-dir content/publication --compact`. Add `--dry-run` to see changes without applying them. Note that citation keys get converted from PascalCase to kebab-case directory names. See <https://github.com/GetRD/academic-file-converter> for more details.
+To import publications, export a collection from Zotero in BibTeX format (or BibLaTeX, both seem to work) and save it to `publications.bib` in this project directory. Then install the `academic` Python package and run `academic import publications.bib content/publications/ --compact`. Add `--dry-run` to see changes without applying them. Note that citation keys get converted from PascalCase to kebab-case directory names. See <https://github.com/GetRD/academic-file-converter> for more details. Pushing a `publications.bib` change to `main` also triggers `.github/workflows/import-publications.yml`, which does the same import automatically and opens a PR — either workflow works.
