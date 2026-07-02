@@ -3,10 +3,14 @@
 {{/* License: https://github.com/HugoBlox/kit/blob/main/LICENSE.md */}}
 
 {{/* Site override of modules/blox's resume-biography-3/block.html:
-     the Education/Interests sections were flattened (dropped the
-     gradient card background) and made more compact (smaller icons,
-     tighter padding/margins). Everything else is unchanged from
-     upstream -- keep this in sync if the upstream block changes. */}}
+     - Education/Interests sections flattened (dropped the gradient
+       card background) and made more compact (smaller icons,
+       tighter padding/margins).
+     - Social icon links and the CV download button no longer scale
+       up / lift on hover (dropped hover:scale-110/-105 and
+       hover:-translate-y-1), keeping only a shadow-depth change.
+     Everything else is unchanged from upstream -- keep this in sync
+     if the upstream block changes. */}}
 
 {{/* Initialise */}}
 {{ $page := .wcPage }}
@@ -332,8 +336,8 @@
                aria-label="{{ $iconName }}"
                {{ if $linkLabel }} title="{{ $linkLabel }}"{{ end }}
                class="w-12 h-12 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400
-                      shadow-md hover:shadow-xl hover:scale-110 hover:-translate-y-1
-                      transition-all duration-300 border border-gray-200 dark:border-gray-700">
+                      shadow-md hover:shadow-lg
+                      transition-shadow duration-300 border border-gray-200 dark:border-gray-700">
               {{ partial "functions/get_icon" (dict "name" $iconName "attributes" "class=\"w-6 h-6\"")  }}
             </a>
           {{ end }}
@@ -403,7 +407,7 @@
             {{ end }}
             <div class="mb-16">
               <a href="{{ $button_link | safeURL }}" {{ $target | safeHTMLAttr }}
-                 class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 hover:to-secondary-700 text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                 class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 hover:to-secondary-700 text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
                 {{ partial "functions/get_icon" (dict "name" "document-arrow-down" "attributes" "class='w-5 h-5 mr-3'") }}
                 {{ $button_text }}
               </a>

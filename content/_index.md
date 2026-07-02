@@ -39,6 +39,7 @@ sections:
           - projects
     design:
       columns: 2
+      animations: false
   - block: collection
     id: publications
     content:

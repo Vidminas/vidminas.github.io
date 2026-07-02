@@ -2,15 +2,26 @@
 {{/* Documentation: https://hugoblox.com/blocks/ */}}
 {{/* License: https://github.com/HugoBlox/kit/blob/main/LICENSE.md */}}
 
-{{/* Site override of modules/blox's portfolio/block.html: the Action
-     Links icon/label fallback (originally only recognized types
-     github/live/demo, defaulting everything else -- pdf, dataset,
-     video, code, slides, etc. -- to a generic "link" icon/label) now
-     also checks the same data/link_types.yaml table that the project
-     detail page's build_links function uses, so a link's icon/label
-     is the same whether it renders on this card or on the page. Only
-     the Action Links section differs from upstream; everything else
-     is byte-identical, to keep future diffing against upstream easy. */}}
+{{/* Site override of modules/blox's portfolio/block.html:
+     1) The Action Links icon/label fallback (originally only
+        recognized types github/live/demo, defaulting everything
+        else -- pdf, dataset, video, code, slides, etc. -- to a
+        generic "link" icon/label) now also checks the same
+        data/link_types.yaml table the project detail page's
+        build_links function uses, so a link's icon/label is the
+        same whether it renders on this card or on the page.
+     2) Card hover no longer zooms the image or lifts the card
+        (dropped group-hover:scale-110 and card-hover-lift), and
+        the filter-switch transition is a plain fade instead of
+        fade+scale+slide. The existing design.animations config
+        knob (unchanged default, set to false in content/_index.md
+        instead) already controls whether has_animations gets set
+        at all -- none of hb-animations.js's features (typewriter,
+        stagger) are used by this block's markup anyway (no
+        data-stagger-item children), so turning it off there also
+        avoids loading that JS file for nothing.
+     Everything outside these two areas is byte-identical to
+     upstream, to keep future diffing easy. */}}
 
 {{/* Initialise */}}
 {{ $page := .wcPage }}
@@ -222,8 +233,8 @@
   </div>
   {{ end }}
 
-  {{/* Project Grid with staggered reveal animation */}}
-  <div class="grid grid-cols-1 {{ $grid_class }} gap-6" data-stagger="100">
+  {{/* Project Grid */}}
+  <div class="grid grid-cols-1 {{ $grid_class }} gap-6">
     {{ range $index, $item := $query }}
       {{ $item_key := $item.RelPermalink }}
       {{ $card_allowed_filters := index $allowed_map $item_key }}
@@ -276,9 +287,9 @@
         x-data="{ filters: {{ $card_allowed_filters_json }} }"
         x-show="filters.includes(activeFilter)"
         x-transition:enter="transition ease-out duration-300"
-        x-transition:enter-start="opacity-0 scale-95 translate-y-4"
-        x-transition:enter-end="opacity-100 scale-100 translate-y-0"
-        class="group relative flex flex-col bg-white dark:bg-white/[0.03] backdrop-blur-xl rounded-2xl border border-gray-200 dark:border-white/[0.08] overflow-hidden hover:border-primary-500/50 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-all duration-300 hover:shadow-xl hover:shadow-primary-500/10 card-hover-lift"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        class="group relative flex flex-col bg-white dark:bg-white/[0.03] backdrop-blur-xl rounded-2xl border border-gray-200 dark:border-white/[0.08] overflow-hidden hover:border-primary-500/50 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors duration-300"
       >
         {{/* Card Header / Image */}}
         <div class="relative h-48 overflow-hidden">
@@ -288,14 +299,14 @@
               <img
                 src="{{ $image.RelPermalink }}"
                 alt="{{ $item.Title }}"
-                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                class="w-full h-full object-cover"
               >
             {{ else }}
               {{ $img := $image.Fill "600x400 webp" }}
               <img
                 src="{{ $img.RelPermalink }}"
                 alt="{{ $item.Title }}"
-                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                class="w-full h-full object-cover"
               >
             {{ end }}
           {{ else }}
