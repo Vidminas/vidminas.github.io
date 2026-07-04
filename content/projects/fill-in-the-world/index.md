@@ -16,9 +16,11 @@ links:
   - type: github
     label: Client code
     url: https://github.com/Vidminas/fitw-client
+    icon: brands/github
   - type: github
     label: Server code
     url: https://github.com/Vidminas/fitw-server
+    icon: brands/github
   - type: dataset
     label: 'Dataset [DOI: 10.7488/ds/3034]'
     url: https://datashare.ed.ac.uk/handle/10283/3900
