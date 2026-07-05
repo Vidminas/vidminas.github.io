@@ -9,6 +9,9 @@
      - Social icon links and the CV download button no longer scale
        up / lift on hover (dropped hover:scale-110/-105 and
        hover:-translate-y-1), keeping only a shadow-depth change.
+     - An explicitly-set empty `content.headings.about` hides the
+       bio section's header row (icon + heading) instead of falling
+       back to the default "Professional Summary".
      Everything else is unchanged from upstream -- keep this in sync
      if the upstream block changes. */}}
 
@@ -360,22 +363,24 @@
         {{ end }}
         {{ with $bio_content }}
         <div class="mb-12">
+          {{/* Site override: an explicitly-set empty `content.headings.about`
+               hides the header row entirely (upstream treats empty as "use
+               the default heading"); an absent key keeps upstream behavior. */}}
+          {{ $i18n_about := i18n "about_me" }}
+          {{ $about_default := cond (eq $i18n_about "about_me") "Professional Summary" $i18n_about }}
+          {{ $about_heading := $about_default }}
+          {{ $about_heading_raw := index $headings "about" }}
+          {{ if eq (printf "%T" $about_heading_raw) "string" }}
+            {{ $about_heading = strings.TrimSpace $about_heading_raw }}
+          {{ end }}
+          {{ if $about_heading }}
           <div class="flex items-center gap-4 mb-8">
             <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/50 rounded-full flex items-center justify-center">
               {{ partial "functions/get_icon" (dict "name" "identification" "attributes" "class='w-6 h-6 text-primary-600 dark:text-primary-400'") }}
             </div>
-            {{ $i18n_about := i18n "about_me" }}
-            {{ $about_default := cond (eq $i18n_about "about_me") "Professional Summary" $i18n_about }}
-            {{ $about_heading := $about_default }}
-            {{ $about_heading_raw := index $headings "about" }}
-            {{ if eq (printf "%T" $about_heading_raw) "string" }}
-              {{ $about_heading_raw = strings.TrimSpace $about_heading_raw }}
-              {{ if ne $about_heading_raw "" }}
-                {{ $about_heading = $about_heading_raw }}
-              {{ end }}
-            {{ end }}
             <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white tracking-tight">{{ $about_heading }}</h2>
           </div>
+          {{ end }}
           <div class="prose prose-lg dark:prose-invert text-gray-800 dark:text-gray-200 text-base sm:text-lg leading-relaxed">
             <div class="bio-text" {{ if $bio_style }}{{ (printf "style=\"%s\"" $bio_style) | safeHTMLAttr }}{{ end }}>
               {{ . }}
