@@ -1,0 +1,41 @@
+/* Site custom CSS — auto-loaded by the theme after the main Tailwind
+   bundle whenever assets/css/custom.css exists (see the theme's
+   site_head.html), so equal-specificity rules here win.
+
+   Restyle attachment links (the PDF / Code / Dataset / DOI / Cite etc.
+   buttons emitted by the page_links partial on publication rows,
+   project cards, and detail pages) to match the old Bootstrap theme's
+   `btn btn-outline-primary` look: small outlined rounded buttons in the
+   primary color that fill with it on hover, in normal sentence case
+   rather than the new theme's uppercase text links.
+
+   Plain CSS only — this file is minified but NOT processed by Tailwind,
+   so no @apply here. The --color-primary-* custom properties are defined
+   globally by the theme and adapt to the selected theme pack. */
+
+.hb-attachment-link {
+  border: 1px solid var(--color-primary-600);
+  border-radius: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: 500;
+}
+
+.hb-attachment-link:hover {
+  background-color: var(--color-primary-600);
+  color: #fff;
+  text-decoration: none;
+}
+
+.dark .hb-attachment-link {
+  border-color: var(--color-primary-400);
+}
+
+.dark .hb-attachment-link:hover {
+  background-color: var(--color-primary-400);
+  color: var(--color-gray-900, #111827);
+  text-decoration: none;
+}

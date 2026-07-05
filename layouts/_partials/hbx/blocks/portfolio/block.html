@@ -3,13 +3,14 @@
 {{/* License: https://github.com/HugoBlox/kit/blob/main/LICENSE.md */}}
 
 {{/* Site override of modules/blox's portfolio/block.html:
-     1) The Action Links icon/label fallback (originally only
-        recognized types github/live/demo, defaulting everything
-        else -- pdf, dataset, video, code, slides, etc. -- to a
-        generic "link" icon/label) now also checks the same
-        data/link_types.yaml table the project detail page's
-        build_links function uses, so a link's icon/label is the
-        same whether it renders on this card or on the page.
+     1) The Action Links section (originally a bespoke ~100-line
+        loop with its own icon/label fallbacks that recognized only
+        github/live/demo) is replaced by a call to the shared
+        page_links partial -- the same renderer the publication rows
+        and the project detail page use -- so icons, labels, and
+        button styling stay consistent site-wide (styled in
+        assets/css/custom.css to match the old Bootstrap theme's
+        outlined-button look).
      2) Card hover no longer zooms the image or lifts the card
         (dropped group-hover:scale-110 and card-hover-lift), and
         the filter-switch transition is a plain fade instead of
@@ -20,7 +21,7 @@
         stagger) are used by this block's markup anyway (no
         data-stagger-item children), so turning it off there also
         avoids loading that JS file for nothing.
-     Everything outside these two areas is byte-identical to
+     Everything outside these areas is byte-identical to
      upstream, to keep future diffing easy. */}}
 
 {{/* Initialise */}}
@@ -391,105 +392,16 @@
           {{ end }}
 
           {{/* Action Links - pushed to bottom with mt-auto */}}
-          {{/* Site override: fall back to the shared data/link_types.yaml
-               table (same one build_links.html uses for the detail page)
-               instead of defaulting unrecognized types straight to a
-               generic "link" icon/label. github/live/demo keep their
-               existing dedicated treatment, since that table has no
-               entries for github/live and only a generic entry for demo. */}}
-          {{ $link_types := hugo.Data.link_types.types }}
-          {{ $links := slice }}
-          {{ $links_raw := $item.Params.links }}
-          {{ $links_iter := slice }}
-          {{ if reflect.IsSlice $links_raw }}
-            {{ $links_iter = $links_raw }}
-          {{ else if and $links_raw (reflect.IsMap $links_raw) }}
-            {{ $links_iter = slice $links_raw }}
-          {{ end }}
-          {{ if gt (len $links_iter) 0 }}
-            {{ range $links_iter }}
-              {{ $url := "" }}
-              {{ $label := "" }}
-              {{ $icon := "" }}
-              {{ $type := "" }}
-              {{ $new_tab := false }}
-              {{ if reflect.IsMap . }}
-                {{ with index . "url" }}{{ $url = strings.TrimSpace (printf "%v" .) }}{{ end }}
-                {{ if not $url }}
-                  {{ with index . "link" }}{{ $url = strings.TrimSpace (printf "%v" .) }}{{ end }}
-                {{ end }}
-                {{ with index . "label" }}{{ $label = strings.TrimSpace (printf "%v" .) }}{{ end }}
-                {{ if not $label }}
-                  {{ with index . "name" }}{{ $label = strings.TrimSpace (printf "%v" .) }}{{ end }}
-                {{ end }}
-                {{ with index . "type" }}{{ $type = lower (strings.TrimSpace (printf "%v" .)) }}{{ end }}
-                {{ with index . "icon" }}{{ $icon = printf "%v" . }}{{ end }}
-                {{ $new_tab = partial "functions/coerce_bool" (dict "value" (index . "new_tab") "default" false) }}
-              {{ else if eq (printf "%T" .) "string" }}
-                {{ $url = strings.TrimSpace . }}
-              {{ end }}
-              {{ if $url }}
-                {{ $type_data := index $link_types $type }}
-                {{ if not $label }}
-                  {{ if eq $type "github" }}
-                    {{ $label = i18n "portfolio_link_code" | default "Code" }}
-                  {{ else if eq $type "live" }}
-                    {{ $label = i18n "portfolio_link_live" | default "Live" }}
-                  {{ else if eq $type "demo" }}
-                    {{ $label = i18n "portfolio_link_demo" | default "Demo" }}
-                  {{ else if $type_data }}
-                    {{ $label = (i18n (index $type_data "label_i18n")) | default (humanize $type) }}
-                  {{ else }}
-                    {{ $label = i18n "portfolio_link_default" | default "Link" }}
-                  {{ end }}
-                {{ end }}
-                {{ if not $icon }}
-                  {{ if eq $type "github" }}
-                    {{ $icon = "brands/github" }}
-                  {{ else if eq $type "live" }}
-                    {{ $icon = "globe-alt" }}
-                  {{ else if eq $type "demo" }}
-                    {{ $icon = "play" }}
-                  {{ else if and $type_data (index $type_data "icon") }}
-                    {{ $icon = index $type_data "icon" }}
-                  {{ else }}
-                    {{ $icon = "link" }}
-                  {{ end }}
-                {{ end }}
-                {{ $links = $links | append (dict "url" $url "label" $label "icon" $icon "new_tab" $new_tab) }}
-              {{ end }}
-            {{ end }}
-          {{ end }}
-          {{ if gt (len $links) 0 }}
-          <div class="flex items-center gap-3 pt-3 border-t border-gray-100 dark:border-white/5 mt-auto">
-            {{ range $links }}
-              {{ $icon := index . "icon" | default "link" }}
-              {{ $label := index . "label" | default (i18n "portfolio_link_default" | default "Link") }}
-              {{ $link_url := index . "url" }}
-              {{ $new_tab := partial "functions/coerce_bool" (dict "value" (index . "new_tab") "default" false) }}
-              {{ $target := "" }}
-              {{ $scheme := (urls.Parse $link_url).Scheme }}
-              {{ if not $scheme }}
-                {{ if not (hasPrefix $link_url "#") }}
-                  {{ $link_url = $link_url | relLangURL }}
-                {{ end }}
-                {{ if eq (path.Ext $link_url) ".pdf" }}{{ $new_tab = true }}{{ end }}
-              {{ else if in (slice "http" "https") $scheme }}
-                {{ $new_tab = true }}
-              {{ end }}
-              {{ if $new_tab }}
-                {{ $target = "target=\"_blank\" rel=\"noopener noreferrer\"" }}
-              {{ end }}
-              <a
-                href="{{ $link_url | safeURL }}"
-                {{ $target | safeHTMLAttr }}
-                class="relative z-10 inline-flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-                onclick="event.stopPropagation();"
-              >
-                {{ partial "functions/get_icon" (dict "name" $icon "attributes" "class=\"w-4 h-4\"") }}
-                <span>{{ $label }}</span>
-              </a>
-            {{ end }}
+          {{/* Site override: delegate to the shared page_links partial --
+               the same renderer the publication rows (citation view) and
+               the project detail page use, and the equivalent of what the
+               old Bootstrap theme's card view did -- so link icons, labels,
+               and button styling stay consistent site-wide. Button look is
+               styled globally in assets/css/custom.css; the inline-block
+               buttons wrap onto extra rows natively. */}}
+          {{ if $item.Params.links }}
+          <div class="relative z-10 flex flex-wrap pt-3 border-t border-gray-100 dark:border-white/5 mt-auto" onclick="event.stopPropagation();">
+            {{ partial "page_links" (dict "page" $item "is_list" 1) }}
           </div>
           {{ end }}
         </div>
