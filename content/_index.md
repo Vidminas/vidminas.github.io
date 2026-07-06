@@ -24,14 +24,18 @@ sections:
 
       spacing:
         padding: [0, 0, 0, 0]
+
       # Name heading sizing to accommodate long or short names
       name:
-        size: md # Options: xs, sm, md, lg (default), xl
+        size: sm # Options: xs, sm, md, lg (default), xl
 
       # Avatar customization
       avatar:
         size: medium # Options: small (150px), medium (200px, default), large (320px), xl (400px), xxl (500px)
         shape: circle # Options: circle (default), square, rounded
+
+      biography:
+        style: "max-width: 100%;"
   - block: portfolio
     id: projects
     content:

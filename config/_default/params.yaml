@@ -61,6 +61,8 @@ hugoblox:
   typography:
     # Theme pack: name from data/fonts/
     pack: "modern"
+    sizes:
+      base: "21px"
 
   # ────────────────────────────────────────────────────────────────────────────
   # LAYOUT
