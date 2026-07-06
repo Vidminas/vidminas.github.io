@@ -17,5 +17,6 @@ projects:
 links:
 - type: source
   url: https://dl.acm.org/doi/10.1145/3627508.3638320
+  label: ACM DL
 abstract: This project investigates the needs and challenges of school teachers in Scotland involved in finding, using, and sharing educational resources online. The first exploratory stage comprises interviews with primary and secondary school teachers, teacher trainees, and other school staff to define the processes involved and how these processes are situated in teachers’ work context. The second stage is a review of existing tools that facilitate these tasks. The third and final stage consists of user centred iterative design and prototype evaluation studies, experimenting with potential improvements to online resource discoverability.
 ---

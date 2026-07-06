@@ -17,6 +17,7 @@ projects:
 links:
 - type: source
   url: https://dl.acm.org/doi/10.1145/3698204.3716472
+  label: ACM DL
 abstract: Educational metadata can facilitate search for educational resources, however
   adding metadata requires time and effort from resource creators and is an often
   overlooked part of publishing. Previous studies have investigated automated metadata
