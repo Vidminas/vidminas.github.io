@@ -52,9 +52,6 @@ sections:
     id: publications
     content:
       title: Recent Publications
-      text: |-
-        > [!NOTE]
-        > Quickly discover relevant content by [filtering publications](./publications/).
       filters:
         folders:
           - publications

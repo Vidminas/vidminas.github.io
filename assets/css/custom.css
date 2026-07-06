@@ -88,6 +88,15 @@ html {
   padding-bottom: 0;
 }
 
-#publications .callout {
-  margin-bottom: 0;
+/* Collection blocks' "See all ..." button row (publications + events):
+   the theme gives it mt-10 (2.5rem) and no bottom margin, which reads
+   as belonging to the NEXT section now that section wrappers have zero
+   padding. Pull it toward its own list and push it away from what
+   follows. (Scoped by section id -- the sections' generated widget
+   class is a useless "blox-_" -- and the id out-specifies the mt-10
+   utility.) */
+#publications .mt-10.justify-center,
+#conferences .mt-10.justify-center {
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
 }
