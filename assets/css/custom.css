@@ -101,6 +101,59 @@ html {
   margin-bottom: 2rem;
 }
 
+/* "See all" buttons: match the bio's social buttons. Light hover gets
+   the same primary tint (replacing the theme's hover:bg-gray-50, which
+   also had no dark counterpart and painted near-white under light gray
+   text in dark mode). Dark resting uses the navbar's semantic
+   header-bg surface instead of the slate-tinted gray-800, and dark
+   hover gets the muted primary tint. */
+#publications .mt-10.justify-center a:hover,
+#conferences .mt-10.justify-center a:hover {
+  background-color: var(--color-primary-50);
+  color: var(--color-primary-600);
+  border-color: var(--color-primary-200);
+}
+
+/* Dark button surface and border: the navbar's header-bg lifted toward
+   white by 6% (surface, roughly GitHub's raised-button dark background)
+   and 30% (border) -- the theme emits no semantic border variable, so
+   both are derived from its header surface and track any future
+   surface override. Used by the see-all buttons here and the bio's
+   social buttons (via dark:bg-[var(--site-btn-surface)] and
+   dark:border-[var(--site-btn-border)]). */
+.dark {
+  --site-btn-surface: color-mix(in srgb, var(--hb-color-header-bg), white 6%);
+  --site-btn-border: color-mix(in srgb, var(--hb-color-header-bg), white 30%);
+}
+
+.dark #publications .mt-10.justify-center a,
+.dark #conferences .mt-10.justify-center a {
+  background-color: var(--site-btn-surface);
+  border-color: var(--site-btn-border);
+}
+
+.dark #publications .mt-10.justify-center a:hover,
+.dark #conferences .mt-10.justify-center a:hover {
+  background-color: var(--color-primary-950);
+  color: var(--color-primary-400);
+  border-color: var(--color-primary-800);
+}
+
+/* Footer "Build your site" button: same primary-tint hover language
+   (its border-current follows the text colour automatically). The
+   theme's .powered-by a:hover rule underlines footer links -- right
+   for the inline "Hugo Blox Kit" link, wrong for a button. */
+.powered-by a[data-hbx="poweredby_cta"]:hover {
+  background-color: var(--color-primary-50);
+  color: var(--color-primary-600);
+  text-decoration: none;
+}
+
+.dark .powered-by a[data-hbx="poweredby_cta"]:hover {
+  background-color: var(--color-primary-950);
+  color: var(--color-primary-400);
+}
+
 /* Consistent hyperlink behaviour site-wide: no resting underline, an
    underline appears on hover (matching the event-row and project card
    titles). Covers markdown/prose links (bio, page bodies -- Tailwind

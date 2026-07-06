@@ -340,9 +340,15 @@
             <a href="{{ $linkUrl | safeURL }}" {{ $target | safeHTMLAttr }}
                aria-label="{{ $iconName }}"
                {{ if $linkLabel }} title="{{ $linkLabel }}"{{ end }}
-               class="w-12 h-12 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400
-                      shadow-md hover:shadow-lg
-                      transition-shadow duration-300 border border-gray-200 dark:border-gray-700">
+               {{/* Icon colours mirror the affiliation text: gray-700/gray-300
+                    at rest, primary-600/primary-400 on hover. The dark resting
+                    surface is --site-btn-surface (defined in
+                    assets/css/custom.css: the navbar's header-bg lifted
+                    slightly toward white), shared with the see-all buttons. */}}
+               class="w-12 h-12 flex items-center justify-center rounded-full bg-white dark:bg-[var(--site-btn-surface)] text-gray-700 dark:text-gray-300
+                      shadow-md hover:shadow-lg hover:bg-primary-50 hover:text-primary-600 hover:border-primary-200
+                      dark:hover:bg-primary-950 dark:hover:text-primary-400 dark:hover:border-primary-800
+                      transition duration-300 border border-gray-200 dark:border-[var(--site-btn-border)]">
               {{ partial "functions/get_icon" (dict "name" $iconName "attributes" "class=\"w-6 h-6\"")  }}
             </a>
           {{ end }}
