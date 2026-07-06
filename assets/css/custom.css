@@ -100,3 +100,35 @@ html {
   margin-top: 0.5rem;
   margin-bottom: 2rem;
 }
+
+/* Consistent hyperlink behaviour site-wide: no resting underline, an
+   underline appears on hover (matching the event-row and project card
+   titles). Covers markdown/prose links (bio, page bodies -- Tailwind
+   typography underlines them permanently) and citation links (the
+   publication title carries a literal `underline` utility class).
+   Citation action buttons are excluded -- they handle their own
+   hover style. */
+.prose a {
+  text-decoration: none;
+}
+
+.prose a:hover {
+  text-decoration: underline;
+}
+
+.pub-list-item a:not(.hb-attachment-link) {
+  text-decoration: none;
+}
+
+.pub-list-item a:not(.hb-attachment-link):hover {
+  text-decoration: underline;
+}
+
+/* Project card titles: the stretched-link anchor's hit area covers the
+   whole card, so its own :hover fires everywhere on the card. Keying
+   the underline to hovering the title row (h3) restricts it to the
+   link text, while the card-wide colour shift stays (group-hover
+   classes in the portfolio block override). */
+#projects h3:hover a {
+  text-decoration: underline;
+}

@@ -333,6 +333,11 @@
         {{/* Card Content - use flex-col to push links to bottom */}}
         <div class="p-5 flex flex-col flex-grow">
           {{/* Title */}}
+          {{/* Site override: title underlines only when the pointer is over
+               the title row itself (see the #projects h3:hover rule in
+               assets/css/custom.css -- the stretched-link anchor's own
+               hover fires card-wide, so it can't be used for this),
+               while upstream's colour shift on card hover is kept. */}}
           <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
             <a href="{{ $item.RelPermalink }}" class="stretched-link">
               {{ $item.Title }}
