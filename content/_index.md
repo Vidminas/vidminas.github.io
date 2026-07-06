@@ -22,6 +22,8 @@ sections:
         gradient_mesh:
           enable: false
 
+      spacing:
+        padding: [0, 0, 0, 0]
       # Name heading sizing to accommodate long or short names
       name:
         size: md # Options: xs, sm, md, lg (default), xl
@@ -40,6 +42,8 @@ sections:
     design:
       columns: 2
       animations: false
+      spacing:
+        padding: [0, 0, 0, 0]
   - block: collection
     id: publications
     content:
@@ -54,6 +58,8 @@ sections:
     design:
       columns: '1'
       view: citation
+      spacing:
+        padding: [0, 0, 0, 0]
   - block: collection
     id: conferences
     content:
@@ -64,6 +70,8 @@ sections:
     design:
       columns: '1'
       view: event-row
+      spacing:
+        padding: [0, 0, 0, 0]
   - block: markdown
     id: topics
     content:
@@ -72,4 +80,6 @@ sections:
         Browse all posts by topic on the [tags page](./tags/).
     design:
       columns: '1'
+      spacing:
+        padding: [0, 0, 0, 0]
 ---
