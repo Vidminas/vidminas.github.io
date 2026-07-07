@@ -9,9 +9,13 @@
    primary color that fill with it on hover, in normal sentence case
    rather than the new theme's uppercase text links.
 
-   Plain CSS only — this file is minified but NOT processed by Tailwind,
-   so no @apply here. The --color-primary-* custom properties are defined
-   globally by the theme and adapt to the selected theme pack. */
+   Plain CSS only — NOT processed by Tailwind (so no @apply here) and,
+   as of the minify.disableCSS config setting, NOT minified either:
+   Hugo's built-in CSS minifier (tdewolff) has corrupted hand-authored
+   CSS here before (it stripped the space between two calc() values,
+   dropping a declaration), so this file is served verbatim. The
+   --color-primary-* custom properties are defined globally by the theme
+   and adapt to the selected theme pack. */
 
 /* Root font size, from the theme's typography config: params.yaml sets
    hugoblox.typography.sizes.base, which the theme emits into :root as
@@ -44,10 +48,12 @@ html {
    out-ranks the generic :focus-visible above (0,1,0) -- so no ring
    showed on keyboard focus. This selector matches that specificity and,
    loading after the theme bundle, wins on source order (no !important).
-   outline-style is set explicitly since the theme zeroes it directly. */
+   Pure `outline` shorthand only -- do NOT add an `outline-style` longhand
+   alongside it: mixing shorthand + longhand + var() makes browsers
+   serialize the color/width as empty in DevTools (looks like breakage)
+   and previously tripped the CSS minifier. */
 .hb-attachment-link:focus-visible {
   outline: 2px solid var(--color-primary-600);
-  outline-style: solid;
   outline-offset: 2px;
 }
 

@@ -8,6 +8,16 @@ title: ''
 # Website URL
 baseURL: 'https://vidminas.github.io/'
 
+# Skip Hugo's built-in CSS minifier (tdewolff). It has corrupted the
+# hand-authored assets/css/custom.css (which is served through the
+# `| minify` pipeline in the theme's site_head.html) -- e.g. stripping
+# the space between two calc() values, dropping the declaration. The main
+# Tailwind bundle is minified separately by Lightning CSS and is
+# unaffected; the only cost here is that custom.css and any inline
+# <style> ship unminified (negligible over gzip).
+minify:
+  disableCSS: true
+
 ############################
 ## LANGUAGE
 ############################
