@@ -139,6 +139,18 @@ html {
   border-color: var(--color-primary-800);
 }
 
+/* Footer: the theme's minimal footer is the only place on the site
+   using the slate palette (text-slate-700 dark:text-slate-200); align
+   it with the gray family used everywhere else (the affiliation-text
+   tone). Unlayered, so it beats the layered utilities. */
+footer.container {
+  color: var(--color-gray-700);
+}
+
+.dark footer.container {
+  color: var(--color-gray-300);
+}
+
 /* Footer "Build your site" button: same primary-tint hover language
    (its border-current follows the text colour automatically). The
    theme's .powered-by a:hover rule underlines footer links -- right
@@ -154,27 +166,51 @@ html {
   color: var(--color-primary-400);
 }
 
-/* Consistent hyperlink behaviour site-wide: no resting underline, an
-   underline appears on hover (matching the event-row and project card
-   titles). Covers markdown/prose links (bio, page bodies -- Tailwind
-   typography underlines them permanently) and citation links (the
-   publication title carries a literal `underline` utility class).
-   Citation action buttons are excluded -- they handle their own
-   hover style. */
-.prose a {
+/* Consistent hyperlink styling for content links site-wide: primary
+   colour so they stand out from regular text (primary-600 light /
+   primary-400 dark), normal weight (the theme bolds prose links), no
+   resting underline, and on hover an underline plus a one-step colour
+   shift (darker in light mode, lighter in dark). These rules are
+   unlayered, so they beat the theme's @layer components prose rules
+   regardless of specificity. Contexts covered: markdown/prose bodies
+   (bio, page content), citation title links, list summaries (event
+   rows and archive cards, whose markdown links were previously
+   unstyled), and detail pages' metadata grid (abstract etc.). Action
+   buttons (.hb-attachment-link) and card/heading title links keep
+   their own treatment. */
+.prose a,
+.pub-list-item a:not(.hb-attachment-link),
+.line-clamp-2 a,
+.line-clamp-3 a,
+.max-w-prose.grid a {
+  color: var(--color-primary-600);
+  font-weight: inherit;
   text-decoration: none;
 }
 
-.prose a:hover {
+.dark .prose a,
+.dark .pub-list-item a:not(.hb-attachment-link),
+.dark .line-clamp-2 a,
+.dark .line-clamp-3 a,
+.dark .max-w-prose.grid a {
+  color: var(--color-primary-400);
+}
+
+.prose a:hover,
+.pub-list-item a:not(.hb-attachment-link):hover,
+.line-clamp-2 a:hover,
+.line-clamp-3 a:hover,
+.max-w-prose.grid a:hover {
+  color: var(--color-primary-700);
   text-decoration: underline;
 }
 
-.pub-list-item a:not(.hb-attachment-link) {
-  text-decoration: none;
-}
-
-.pub-list-item a:not(.hb-attachment-link):hover {
-  text-decoration: underline;
+.dark .prose a:hover,
+.dark .pub-list-item a:not(.hb-attachment-link):hover,
+.dark .line-clamp-2 a:hover,
+.dark .line-clamp-3 a:hover,
+.dark .max-w-prose.grid a:hover {
+  color: var(--color-primary-300);
 }
 
 /* Project card titles: the stretched-link anchor's hit area covers the
@@ -187,8 +223,55 @@ html {
 }
 
 /* Project card summaries: tighten the gap between the description and
-   the action links row (the summary keeps upstream's mb-4 class; the
-   id out-specifies the utility). */
+   the action links row, and align the text colour with the other
+   summary/abstract text on the page (event rows, citation venues:
+   gray-800/gray-200 -- upstream uses a dimmer gray-600/gray-400).
+   The summary keeps upstream's classes; the id out-specifies them. */
 #projects p.line-clamp-2 {
   margin-bottom: 0.5rem;
+  color: var(--color-gray-800);
+}
+
+.dark #projects p.line-clamp-2 {
+  color: var(--color-gray-200);
+}
+
+/* Citation entries (publication lists): give the parts a visual
+   hierarchy, aligned with the tones used elsewhere on the page.
+   - Base (authors, year, punctuation): the muted metadata tone used
+     by dates/locations (gray-600 / gray-400) -- the owner's name
+     stays font-semibold within it.
+   - Title link: primary colour from the site link rules, plus medium
+     weight to anchor the entry.
+   - Venue (rendered as <em>): regular body tone (gray-800/gray-200),
+     distinguished from the metadata by colour and its italics. */
+.pub-list-item {
+  color: var(--color-gray-500);
+}
+
+.dark .pub-list-item {
+  color: var(--color-gray-500);
+}
+
+.pub-list-item a:not(.hb-attachment-link) {
+  font-weight: 500;
+}
+
+.pub-list-item em {
+  color: var(--color-gray-800);
+}
+
+.dark .pub-list-item em {
+  color: var(--color-gray-200);
+}
+
+/* Summary/abstract text in the theme's card view (the /events/ and
+   other archive pages): match the event-row view's gray-800/gray-200
+   pair, brighter than upstream's dimmer zinc in dark mode. (Tailwind
+   emits colour variables as --color-*, not --text-*.) */
+[role="article"] p.line-clamp-3 {
+  color: var(--color-gray-800);
+}
+.dark [role="article"] p.line-clamp-3 {
+  color: var(--color-gray-200);
 }

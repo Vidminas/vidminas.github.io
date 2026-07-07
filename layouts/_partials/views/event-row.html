@@ -21,10 +21,10 @@
   </a>
   {{ end }}
   <div class="min-w-0 flex-1">
-    <h3 class="font-semibold text-zinc-900 dark:text-zinc-100 leading-snug">
+    <h3 class="font-semibold text-gray-900 dark:text-white leading-snug">
       <a href="{{ $link }}" class="hover:underline">{{ $item.Title }}</a>
     </h3>
-    <div class="mt-0.5 flex flex-wrap items-center gap-x-2 text-sm text-zinc-500 dark:text-zinc-400">
+    <div class="mt-0.5 flex flex-wrap items-center gap-x-2 text-sm text-gray-600 dark:text-gray-300">
       <span>{{ $event_dates | safeHTML }}</span>
       {{ with $item.Params.location }}
         <span aria-hidden="true">&middot;</span>
@@ -34,7 +34,7 @@
     {{ with $summary }}
     {{/* div, not p: multi-paragraph abstracts render as block <p>s, which
          would force-close a <p> wrapper and escape these styles */}}
-    <div class="mt-2 text-sm text-zinc-600 dark:text-zinc-400 line-clamp-3">{{ . }}</div>
+    <div class="mt-2 text-sm text-gray-800 dark:text-gray-200 line-clamp-3">{{ . }}</div>
     {{ end }}
   </div>
 </div>
