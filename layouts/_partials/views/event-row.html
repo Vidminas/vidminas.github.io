@@ -32,7 +32,9 @@
       {{ end }}
     </div>
     {{ with $summary }}
-    <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400 line-clamp-3">{{ . }}</p>
+    {{/* div, not p: multi-paragraph abstracts render as block <p>s, which
+         would force-close a <p> wrapper and escape these styles */}}
+    <div class="mt-2 text-sm text-zinc-600 dark:text-zinc-400 line-clamp-3">{{ . }}</div>
     {{ end }}
   </div>
 </div>
