@@ -185,3 +185,10 @@ html {
 #projects h3:hover a {
   text-decoration: underline;
 }
+
+/* Project card summaries: tighten the gap between the description and
+   the action links row (the summary keeps upstream's mb-4 class; the
+   id out-specifies the utility). */
+#projects p.line-clamp-2 {
+  margin-bottom: 0.5rem;
+}

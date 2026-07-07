@@ -405,7 +405,8 @@
                styled globally in assets/css/custom.css; the inline-block
                buttons wrap onto extra rows natively. */}}
           {{ if $item.Params.links }}
-          <div class="relative z-10 flex flex-wrap pt-3 border-t border-gray-100 dark:border-white/5 mt-auto" onclick="event.stopPropagation();">
+          {{/* pt-1.5 (upstream pt-3): the buttons already carry 8px top margin */}}
+          <div class="relative z-10 flex flex-wrap pt-1.5 border-t border-gray-100 dark:border-white/5 mt-auto" onclick="event.stopPropagation();">
             {{ partial "page_links" (dict "page" $item "is_list" 1) }}
           </div>
           {{ end }}
