@@ -25,6 +25,18 @@
    proportionally. */
 html {
   font-size: var(--hb-font-size-base, 1rem);
+  /* Smooth-scroll the navbar's in-page anchor links (/#about, /#projects,
+     ...). scroll-padding-top offsets the sticky header so a section's
+     heading isn't hidden beneath it on arrival. */
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--navbar-height, 4rem);
+}
+
+/* Respect users who prefer reduced motion: jump instead of animate. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 /* Keyboard focus visibility, site-wide: the theme suppresses focus
