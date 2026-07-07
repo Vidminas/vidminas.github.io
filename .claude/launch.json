@@ -5,7 +5,8 @@
       "name": "site",
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["run", "dev"],
-      "port": 1313
+      "port": 1313,
+      "autoPort": true
     }
   ]
 }

@@ -23,6 +23,58 @@ html {
   font-size: var(--hb-font-size-base, 1rem);
 }
 
+/* Keyboard focus visibility, site-wide: the theme suppresses focus
+   outlines in places (e.g. .hb-attachment-link ships outline-none
+   focus:outline-none), leaving keyboard users with no focus indicator.
+   :focus-visible targets keyboard/assistive navigation only (no ring on
+   mouse clicks), and these unlayered rules beat the theme's layered
+   utilities. */
+:focus-visible {
+  outline: 2px solid var(--color-primary-600);
+  outline-offset: 2px;
+}
+
+.dark :focus-visible {
+  outline-color: var(--color-primary-400);
+}
+
+/* The action buttons (.hb-attachment-link -- publication rows and
+   project cards) compile to `outline-style: none` on both the base
+   class and a nested `&:focus`, specificity (0,2,0) and unlayered, which
+   out-ranks the generic :focus-visible above (0,1,0) -- so no ring
+   showed on keyboard focus. This selector matches that specificity and,
+   loading after the theme bundle, wins on source order (no !important).
+   outline-style is set explicitly since the theme zeroes it directly. */
+.hb-attachment-link:focus-visible {
+  outline: 2px solid var(--color-primary-600);
+  outline-style: solid;
+  outline-offset: 2px;
+}
+
+.dark .hb-attachment-link:focus-visible {
+  outline-color: var(--color-primary-400);
+}
+
+/* Skip-to-content link (baseof override): visually hidden until it
+   receives keyboard focus, then pinned to the top-left so keyboard
+   users can jump past the header nav to <main id="main-content">. */
+.skip-link {
+  position: absolute;
+  left: 0.5rem;
+  top: -3rem;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  background-color: var(--color-primary-600);
+  color: #fff;
+  font-weight: 600;
+  transition: top 0.15s ease-in-out;
+}
+
+.skip-link:focus {
+  top: 0.5rem;
+}
+
 /* Button colours: the current pack's primary-600 (rgb 8 94 196) is
    near-identical to the old Bootstrap "minimal" theme's primary
    (#1565c0, rgb 21 101 192), so theme variables are used throughout --
@@ -250,7 +302,10 @@ footer.container {
 }
 
 .dark .pub-list-item {
-  color: var(--color-gray-500);
+  /* gray-400, not gray-500: gray-500 on the dark background is only
+     3.9:1 (below WCAG AA 4.5:1); gray-400 is 7.3:1 and still dimmer
+     than the venue's gray-200, so the hierarchy is preserved. */
+  color: var(--color-gray-400);
 }
 
 .pub-list-item a:not(.hb-attachment-link) {
