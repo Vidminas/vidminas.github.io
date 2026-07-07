@@ -2,10 +2,9 @@
   "name": "new-site",
   "private": true,
   "scripts": {
-    "dev": "hugo server --disableFastRender",
+    "dev": "hugo --quiet && pnpm run pagefind && hugo server --disableFastRender",
     "build": "hugo --minify && pnpm run pagefind",
-    "lint": "echo 'TODO: add lint script'",
-    "pagefind": "pagefind --site public"
+    "pagefind": "pagefind --site public --output-path static/pagefind"
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.1.12",
