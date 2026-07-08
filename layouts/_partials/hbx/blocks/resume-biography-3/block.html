@@ -18,6 +18,12 @@
      - An explicitly-set empty `content.headings.about` hides the
        bio section's header row (icon + heading) instead of falling
        back to the default "Professional Summary".
+     - Horizontal padding (px-4 sm:px-6 lg:px-8) moved from the outer
+       .resume-biography (upstream: a static px-4, no sm:/lg: variants)
+       onto the inner max-w-7xl div, matching the Projects section's
+       and the navbar's padding scale (see assets/css/custom.css) so
+       the hero's content aligns with the rest of the page horizontally
+       at every breakpoint.
      Everything else is unchanged from upstream -- keep this in sync
      if the upstream block changes. */}}
 
@@ -115,9 +121,14 @@
 {{ $interests_heading := i18n "interests" }}
 {{ with index $headings "interests" }}{{ if and (eq (printf "%T" .) "string") (ne (strings.TrimSpace .) "") }}{{ $interests_heading = strings.TrimSpace . }}{{ end }}{{ end }}
 
-<div class="resume-biography py-8 px-4 sm:py-12 md:py-16 lg:py-24 xl:py-32 relative overflow-hidden">
+{{/* Site override: horizontal padding moved off .resume-biography (was a
+     static px-4, not responsive) onto the max-w-7xl div below, using the
+     same px-4 sm:px-6 lg:px-8 scale as the Projects section and navbar --
+     so the hero's left/right edges line up with the rest of the page at
+     every breakpoint instead of only by coincidence at some widths. */}}
+<div class="resume-biography py-8 sm:py-12 md:py-16 lg:py-24 xl:py-32 relative overflow-hidden">
   {{/* Add subtle top gradient for navbar transition */}}
-  <div class="max-w-7xl mx-auto">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start">
 
       {{/* Left Column: Flexible span */}}

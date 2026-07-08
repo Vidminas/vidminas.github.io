@@ -100,6 +100,38 @@ html {
 .skip-link:focus {
   transform: translateY(0.5rem);
 }
+
+/* Navbar container width: the theme's navbar is full-bleed (just a
+   fixed px-3 padding, no max-width), while every content section is
+   max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 (see the portfolio and
+   resume-biography block overrides). On wide screens that leaves the
+   nav's left/right edges noticeably closer to the viewport edge than
+   the hero/project cards below it. No config knob exists for this
+   (checked site.Params.hugoblox.header), so matching the same
+   max-width + padding scale here via CSS. Note: the publications/
+   conferences sections use a narrower max-w-screen-lg container of
+   their own, so this aligns with the hero/projects width specifically,
+   not literally every section on the page. */
+#site-header .navbar {
+  max-width: 80rem; /* max-w-7xl */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem; /* px-4 */
+  padding-right: 1rem;
+}
+
+@media (min-width: 40rem) { /* sm: */
+  #site-header .navbar {
+    padding-left: 1.5rem; /* sm:px-6 */
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 64rem) { /* lg: */
+  #site-header .navbar {
+    padding-left: 2rem; /* lg:px-8 */
+    padding-right: 2rem;
+  }
 }
 
 /* Button colours: the current pack's primary-600 (rgb 8 94 196) is
@@ -228,13 +260,36 @@ html {
 /* Footer: the theme's minimal footer is the only place on the site
    using the slate palette (text-slate-700 dark:text-slate-200); align
    it with the gray family used everywhere else (the affiliation-text
-   tone). Unlayered, so it beats the layered utilities. */
+   tone). Unlayered, so it beats the layered utilities.
+
+   Also give it the same max-width + padding scale as the navbar and
+   the Projects section (footer ships with Tailwind's .container class
+   and no horizontal padding at all, so it was flush with the viewport
+   edge -- no config knob exists for this, checked
+   site.Params.hugoblox.footer). */
 footer.container {
   color: var(--color-gray-700);
+  max-width: 80rem; /* max-w-7xl */
+  padding-left: 1rem; /* px-4 */
+  padding-right: 1rem;
 }
 
 .dark footer.container {
   color: var(--color-gray-300);
+}
+
+@media (min-width: 40rem) { /* sm: */
+  footer.container {
+    padding-left: 1.5rem; /* sm:px-6 */
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 64rem) { /* lg: */
+  footer.container {
+    padding-left: 2rem; /* lg:px-8 */
+    padding-right: 2rem;
+  }
 }
 
 /* Footer "Build your site" button: same primary-tint hover language
