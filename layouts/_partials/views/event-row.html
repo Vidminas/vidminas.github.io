@@ -24,10 +24,13 @@
     <h3 class="font-semibold text-gray-900 dark:text-white leading-snug">
       <a href="{{ $link }}" class="hover:underline">{{ $item.Title }}</a>
     </h3>
-    <div class="mt-0.5 flex flex-wrap items-center gap-x-2 text-sm text-gray-600 dark:text-gray-300">
+    {{/* Stacked on narrow screens, inline with a separator from sm: up --
+         avoids flex-wrap ever leaving a lone "·" opening a wrapped line
+         when the date alone is close to the row's full width. */}}
+    <div class="mt-0.5 flex flex-col sm:flex-row sm:items-center gap-y-0.5 sm:gap-x-2 text-sm text-gray-600 dark:text-gray-300">
       <span>{{ $event_dates | safeHTML }}</span>
       {{ with $item.Params.location }}
-        <span aria-hidden="true">&middot;</span>
+        <span class="hidden sm:inline" aria-hidden="true">&middot;</span>
         <span>{{ . }}</span>
       {{ end }}
     </div>
