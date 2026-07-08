@@ -7,6 +7,12 @@
       "runtimeArgs": ["run", "dev"],
       "port": 1313,
       "autoPort": true
+    },
+    {
+      "name": "verify",
+      "runtimeExecutable": "hugo",
+      "runtimeArgs": ["server", "--disableFastRender", "--port", "1414"],
+      "port": 1414
     }
   ]
 }

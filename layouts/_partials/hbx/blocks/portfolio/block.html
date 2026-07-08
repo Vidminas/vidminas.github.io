@@ -21,6 +21,13 @@
         stagger) are used by this block's markup anyway (no
         data-stagger-item children), so turning it off there also
         avoids loading that JS file for nothing.
+     3) The image box is aspect-video (16:9) with a matching Fill
+        "800x450" (upstream: a fixed h-48 box, ~3:1 at this site's
+        2-column width, with a mismatched Fill "600x400" (3:2) --
+        object-cover then had to crop away roughly half the already
+        server-cropped image to fill the box, compounding into a
+        heavy "zoomed in" look). Matching the Fill ratio to the box
+        ratio means only one crop happens, not two stacked ones.
      Everything outside these areas is byte-identical to
      upstream, to keep future diffing easy. */}}
 
@@ -293,7 +300,7 @@
         class="group relative flex flex-col bg-white dark:bg-white/[0.03] backdrop-blur-xl rounded-2xl border border-gray-200 dark:border-white/[0.08] overflow-hidden hover:border-primary-500/50 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors duration-300"
       >
         {{/* Card Header / Image */}}
-        <div class="relative h-48 overflow-hidden">
+        <div class="relative aspect-video overflow-hidden">
           {{ $image := $item.Resources.GetMatch "{featured,cover,thumbnail}*" }}
           {{ if $image }}
             {{ if not (reflect.IsImageResourceProcessable $image) }}
@@ -303,7 +310,7 @@
                 class="w-full h-full object-cover"
               >
             {{ else }}
-              {{ $img := $image.Fill "600x400 webp" }}
+              {{ $img := $image.Fill "800x450 webp" }}
               <img
                 src="{{ $img.RelPermalink }}"
                 alt="{{ $item.Title }}"
