@@ -158,6 +158,13 @@ html {
   padding-bottom: 0;
 }
 
+/* Bio prose: lift Tailwind's `prose` 65ch max-width cap so the bio text
+   fills the full right column and lines up in width with the Education
+   list below it (which now spans the full right column). */
+.resume-biography .prose {
+  max-width: none;
+}
+
 /* Collection blocks' "See all ..." button row (publications + events):
    the theme gives it mt-10 (2.5rem) and no bottom margin, which reads
    as belonging to the NEXT section now that section wrappers have zero

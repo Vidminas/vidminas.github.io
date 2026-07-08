@@ -3,11 +3,15 @@
 {{/* License: https://github.com/HugoBlox/kit/blob/main/LICENSE.md */}}
 
 {{/* Site override of modules/blox's resume-biography-3/block.html:
-     - Education/Interests sections flattened (dropped the gradient
-       card background) and made more compact (smaller icons,
-       tighter padding/margins), and arranged side by side from md
-       up (Interests 5/12 left, Education 7/12 right) matching the
-       old Bootstrap theme's col-md-5 / col-md-7 split.
+     - Education/Interests sections flattened (dropped the gradient card
+       background) and made more compact. The whole block is a flat 12-col
+       grid with four items in DOM order: profile (col 1-4), bio+CV
+       (col 5-12), Interests (col 1-4), Education (col 5-12). On wide
+       screens Interests and Education fall into row 2 with their tops
+       aligned (Interests under the avatar/social block, Education under
+       the bio, full width so degree titles don't wrap). On narrow screens
+       the grid collapses to one column and they stack in DOM order:
+       profile -> bio -> Interests -> Education.
      - Social icon links and the CV download button no longer scale
        up / lift on hover (dropped hover:scale-110/-105 and
        hover:-translate-y-1), keeping only a shadow-depth change.
@@ -96,6 +100,20 @@
     {{ $bio_style = $bio_style_raw }}
   {{ end }}
 {{ end }}
+
+{{/* Education & Interests data + headings, computed once here (site
+     override) since Interests and Education render as separate flat-grid
+     items further down -- see the layout note in the header comment. */}}
+{{ $education := slice }}
+{{ if reflect.IsSlice $profile.education }}{{ $education = $profile.education }}{{ end }}
+{{ $interests := slice }}
+{{ $interests_raw := $profile.interests }}
+{{ if reflect.IsSlice $interests_raw }}{{ $interests = $interests_raw }}
+{{ else if eq (printf "%T" $interests_raw) "string" }}{{ $interests = slice $interests_raw }}{{ end }}
+{{ $education_heading := i18n "education" }}
+{{ with index $headings "education" }}{{ if and (eq (printf "%T" .) "string") (ne (strings.TrimSpace .) "") }}{{ $education_heading = strings.TrimSpace . }}{{ end }}{{ end }}
+{{ $interests_heading := i18n "interests" }}
+{{ with index $headings "interests" }}{{ if and (eq (printf "%T" .) "string") (ne (strings.TrimSpace .) "") }}{{ $interests_heading = strings.TrimSpace . }}{{ end }}{{ end }}
 
 <div class="resume-biography py-8 px-4 sm:py-12 md:py-16 lg:py-24 xl:py-32 relative overflow-hidden">
   {{/* Add subtle top gradient for navbar transition */}}
@@ -359,7 +377,8 @@
         {{ end }}
       </div>
 
-      {{/* Right Column: Flexible span */}}
+      {{/* Bio + CV: right column, row 1 (col 5-12). Interests and Education
+           follow as their own grid items so they land in row 2, aligned. */}}
       <div class="md:col-span-8">
 
         {{/* Bio Section */}}
@@ -429,110 +448,77 @@
             </div>
           {{ end }}
         {{ end }}
-
-        {{/* Interests + Education (site override: plaintext lists like the
-             old Bootstrap site's fa-ul style -- no cards/pills -- arranged
-             side by side from md up, Interests 5/12 left and Education 7/12
-             right, matching the old theme's col-md-5 / col-md-7 split) */}}
-        {{ $education_raw := $profile.education }}
-        {{ $education := slice }}
-        {{ if reflect.IsSlice $education_raw }}
-          {{ $education = $education_raw }}
-        {{ end }}
-        {{ $interests_raw := $profile.interests }}
-        {{ $interests := slice }}
-        {{ if reflect.IsSlice $interests_raw }}
-          {{ $interests = $interests_raw }}
-        {{ else if eq (printf "%T" $interests_raw) "string" }}
-          {{ $interests = slice $interests_raw }}
-        {{ end }}
-        {{ if or (gt (len $education) 0) (gt (len $interests) 0) }}
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-8">
-          {{ if gt (len $interests) 0 }}
-          <div class="md:col-span-5">
-            <h2 class="text-lg font-bold text-gray-900 dark:text-white tracking-tight mb-3">
-              {{ $interests_heading := i18n "interests" }}
-              {{ $interests_heading_raw := index $headings "interests" }}
-              {{ if eq (printf "%T" $interests_heading_raw) "string" }}
-                {{ $interests_heading_raw = strings.TrimSpace $interests_heading_raw }}
-                {{ if ne $interests_heading_raw "" }}
-                  {{ $interests_heading = $interests_heading_raw }}
-                {{ end }}
-              {{ end }}
-              {{ $interests_heading | markdownify }}
-            </h2>
-            <ul class="space-y-1.5">
-              {{ range $interests }}
-              {{ $interest := strings.TrimSpace (printf "%v" .) }}
-              {{ if $interest }}
-              <li class="flex items-center gap-3 text-gray-800 dark:text-gray-200">
-                <span class="flex-shrink-0 text-gray-400 dark:text-gray-500">
-                  {{ partial "functions/get_icon" (dict "name" "book-open" "attributes" "class='w-6 h-6'") }}
-                </span>
-                {{ $interest | markdownify | emojify }}
-              </li>
-              {{ end }}
-              {{ end }}
-            </ul>
-          </div>
-          {{ end }}
-          {{ if gt (len $education) 0 }}
-          <div class="md:col-span-7">
-            <h2 class="text-lg font-bold text-gray-900 dark:text-white tracking-tight mb-3">
-              {{ $education_heading := i18n "education" }}
-              {{ $education_heading_raw := index $headings "education" }}
-              {{ if eq (printf "%T" $education_heading_raw) "string" }}
-                {{ $education_heading_raw = strings.TrimSpace $education_heading_raw }}
-                {{ if ne $education_heading_raw "" }}
-                  {{ $education_heading = $education_heading_raw }}
-                {{ end }}
-              {{ end }}
-              {{ $education_heading | markdownify }}
-            </h2>
-            <ul class="space-y-2">
-              {{ range $education }}
-              {{ if reflect.IsMap . }}
-              {{ $degree := "" }}
-              {{ $degreeRaw := index . "degree" | default (index . "area") }}
-              {{ if ne $degreeRaw nil }}{{ $degree = printf "%v" $degreeRaw }}{{ end }}
-              {{ $year := "" }}
-              {{ with index . "year" }}{{ $year = printf "%v" . }}{{ end }}
-              {{ $start := "" }}
-              {{ with index . "start" }}{{ $start = time.Format "2006" . }}{{ end }}
-              {{ $end := "" }}
-              {{ with index . "end" }}{{ $end = time.Format "2006" . }}{{ end }}
-              {{ $institution := "" }}
-              {{ with index . "institution" }}{{ $institution = printf "%v" . }}{{ end }}
-              {{ $icon := "academic-cap" }}
-              {{ $iconRaw := index . "icon" }}
-              {{ if eq (printf "%T" $iconRaw) "string" }}
-                {{ $icon = $iconRaw }}
-              {{ end }}
-              {{ $date := "" }}
-              {{ if $year }}{{ $date = $year }}
-              {{ else if $start }}{{ $date = $start }}{{ if $end }}{{ $date = printf "%s&ndash;%s" $start $end }}{{ end }}
-              {{ end }}
-              <li class="flex gap-3">
-                <span class="flex-shrink-0 mt-0.5 text-gray-400 dark:text-gray-500">
-                  {{ partial "functions/get_icon" (dict "name" $icon "attributes" "class='w-6 h-6'") }}
-                </span>
-                <div>
-                  {{ if $degree }}<p class="font-semibold text-gray-900 dark:text-white">{{ $degree }}</p>{{ end }}
-                  {{ if or $institution $date }}
-                  <p class="text-sm text-gray-600 dark:text-gray-300">
-                    {{ $institution }}{{ if and $institution $date }} &middot; {{ end }}{{ $date | safeHTML }}
-                  </p>
-                  {{ end }}
-                </div>
-              </li>
-              {{ end }}
-              {{ end }}
-            </ul>
-          </div>
-          {{ end }}
-        </div>
-        {{ end }}
       </div>
+
+      {{/* Interests -- own grid item (col 1-4). On wide screens it lands in
+           row 2 under the avatar/social block, its top aligned with Education
+           (row 2, col 5-12); on narrow screens the grid is one column and it
+           stacks between the bio and Education. */}}
+      {{ if gt (len $interests) 0 }}
+      <div class="md:col-span-4 md:col-start-1">
+        <h2 class="text-lg font-bold text-gray-900 dark:text-white tracking-tight mb-3">{{ $interests_heading | markdownify }}</h2>
+        <ul class="space-y-1.5">
+          {{ range $interests }}
+          {{ $interest := strings.TrimSpace (printf "%v" .) }}
+          {{ if $interest }}
+          <li class="flex items-center gap-3 text-gray-800 dark:text-gray-200">
+            <span class="flex-shrink-0 text-gray-400 dark:text-gray-500">
+              {{ partial "functions/get_icon" (dict "name" "book-open" "attributes" "class='w-6 h-6'") }}
+            </span>
+            {{ $interest | markdownify | emojify }}
+          </li>
+          {{ end }}
+          {{ end }}
+        </ul>
+      </div>
+      {{ end }}
+
+      {{/* Education -- own grid item (col 5-12), row 2, top aligned with
+           Interests; full width of the right column so degree titles don't wrap. */}}
+      {{ if gt (len $education) 0 }}
+      <div class="md:col-span-8 md:col-start-5">
+        <h2 class="text-lg font-bold text-gray-900 dark:text-white tracking-tight mb-3">{{ $education_heading | markdownify }}</h2>
+          <ul class="space-y-2">
+            {{ range $education }}
+            {{ if reflect.IsMap . }}
+            {{ $degree := "" }}
+            {{ $degreeRaw := index . "degree" | default (index . "area") }}
+            {{ if ne $degreeRaw nil }}{{ $degree = printf "%v" $degreeRaw }}{{ end }}
+            {{ $year := "" }}
+            {{ with index . "year" }}{{ $year = printf "%v" . }}{{ end }}
+            {{ $start := "" }}
+            {{ with index . "start" }}{{ $start = time.Format "2006" . }}{{ end }}
+            {{ $end := "" }}
+            {{ with index . "end" }}{{ $end = time.Format "2006" . }}{{ end }}
+            {{ $institution := "" }}
+            {{ with index . "institution" }}{{ $institution = printf "%v" . }}{{ end }}
+            {{ $icon := "academic-cap" }}
+            {{ $iconRaw := index . "icon" }}
+            {{ if eq (printf "%T" $iconRaw) "string" }}
+              {{ $icon = $iconRaw }}
+            {{ end }}
+            {{ $date := "" }}
+            {{ if $year }}{{ $date = $year }}
+            {{ else if $start }}{{ $date = $start }}{{ if $end }}{{ $date = printf "%s&ndash;%s" $start $end }}{{ end }}
+            {{ end }}
+            <li class="flex gap-3">
+              <span class="flex-shrink-0 mt-0.5 text-gray-400 dark:text-gray-500">
+                {{ partial "functions/get_icon" (dict "name" $icon "attributes" "class='w-6 h-6'") }}
+              </span>
+              <div>
+                {{ if $degree }}<p class="font-semibold text-gray-900 dark:text-white">{{ $degree }}</p>{{ end }}
+                {{ if or $institution $date }}
+                <p class="text-sm text-gray-600 dark:text-gray-300">
+                  {{ $institution }}{{ if and $institution $date }} &middot; {{ end }}{{ $date | safeHTML }}
+                </p>
+                {{ end }}
+              </div>
+            </li>
+            {{ end }}
+            {{ end }}
+          </ul>
+        </div>
+      {{ end }}
     </div>
   </div>
 </div>
