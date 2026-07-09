@@ -4,14 +4,13 @@
 
 {{/* Site override of modules/blox's resume-biography-3/block.html:
      - Education/Interests sections flattened (dropped the gradient card
-       background) and made more compact. The whole block is a flat 12-col
-       grid with four items in DOM order: profile (col 1-4), bio+CV
-       (col 5-12), Interests (col 1-4), Education (col 5-12). On wide
-       screens Interests and Education fall into row 2 with their tops
-       aligned (Interests under the avatar/social block, Education under
-       the bio, full width so degree titles don't wrap). On narrow screens
-       the grid collapses to one column and they stack in DOM order:
-       profile -> bio -> Interests -> Education.
+       background) and made more compact. The block is TWO stacked 12-col
+       grids: (1) a wide grid (max-w-7xl) with profile (col 1-4) + bio+CV
+       (col 5-12); (2) a narrow reading-width grid (max-w-3xl) below it with
+       Interests (col 1-4) + Education (col 5-12), tops aligned. The profile
+       row wants the full page width, but the plain Interests/Education lists
+       read better tightened. On narrow screens both grids collapse to one
+       column, giving the stack profile -> bio -> Interests -> Education.
      - Social icon links and the CV download button no longer scale
        up / lift on hover (dropped hover:scale-110/-105 and
        hover:-translate-y-1), keeping only a shadow-depth change.
@@ -460,11 +459,19 @@
           {{ end }}
         {{ end }}
       </div>
+    </div>
+  </div>
 
-      {{/* Interests -- own grid item (col 1-4). On wide screens it lands in
-           row 2 under the avatar/social block, its top aligned with Education
-           (row 2, col 5-12); on narrow screens the grid is one column and it
-           stacks between the bio and Education. */}}
+  {{/* Interests + Education: a SECOND grid at the narrow reading width
+       (max-w-3xl), sitting below the wide profile/bio grid above. The
+       two-column profile layout wants the full page width, but these
+       plain lists read better tightened. Kept as a 2-col sub-grid
+       (Interests col 1-4, Education col 5-12) with their tops aligned;
+       it collapses to one column on narrow screens, continuing the mobile
+       stack profile -> bio -> Interests -> Education. */}}
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 md:mt-8">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start">
+
       {{ if gt (len $interests) 0 }}
       <div class="md:col-span-4 md:col-start-1">
         <h2 class="text-lg font-bold text-gray-900 dark:text-white tracking-tight mb-3">{{ $interests_heading | markdownify }}</h2>
@@ -484,8 +491,8 @@
       </div>
       {{ end }}
 
-      {{/* Education -- own grid item (col 5-12), row 2, top aligned with
-           Interests; full width of the right column so degree titles don't wrap. */}}
+      {{/* Education -- col 5-12 of the narrow reading-width grid, top
+           aligned with Interests (col 1-4). */}}
       {{ if gt (len $education) 0 }}
       <div class="md:col-span-8 md:col-start-5">
         <h2 class="text-lg font-bold text-gray-900 dark:text-white tracking-tight mb-3">{{ $education_heading | markdownify }}</h2>
