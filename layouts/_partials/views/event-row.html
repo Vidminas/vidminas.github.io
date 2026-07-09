@@ -1,0 +1,43 @@
+{{/* Compact row view: small logo beside title/date/location, summary below.
+     Mirrors the old Bootstrap site's bespoke conference-item card. */}}
+{{ $item := .item }}
+{{ $link := $item.RelPermalink }}
+{{ $resource := partial "functions/get_featured_image.html" $item }}
+{{ $isEvent := eq $item.Type "events" }}
+{{ $event_dates := "" }}
+{{ if $isEvent }}
+  {{ $event_dates = partial "functions/get_event_dates" $item }}
+{{ else }}
+  {{ $event_dates = $item.Date | time.Format (site.Params.hugoblox.locale.date_format | default "Jan 2, 2006") }}
+{{ end }}
+{{ $summary := partial "functions/get_summary" $item }}
+{{ $summary = $summary | page.RenderString }}
+
+<div class="flex gap-4 rounded-xl bg-white/90 dark:bg-zinc-900/90 ring-1 ring-zinc-900/5 dark:ring-white/10 shadow-sm p-4">
+  {{ with $resource }}
+  <a href="{{ $link }}" class="flex-shrink-0 self-start">
+    <img src="{{ .RelPermalink }}" alt="{{ $item.Title | plainify }} logo" loading="lazy"
+         class="h-14 w-14 object-contain rounded-md bg-white ring-1 ring-zinc-900/5 dark:ring-white/10 p-1">
+  </a>
+  {{ end }}
+  <div class="min-w-0 flex-1">
+    <h3 class="font-semibold text-gray-900 dark:text-white leading-snug">
+      <a href="{{ $link }}" class="hover:underline">{{ $item.Title }}</a>
+    </h3>
+    {{/* Stacked on narrow screens, inline with a separator from sm: up --
+         avoids flex-wrap ever leaving a lone "·" opening a wrapped line
+         when the date alone is close to the row's full width. */}}
+    <div class="mt-0.5 flex flex-col sm:flex-row sm:items-center gap-y-0.5 sm:gap-x-2 text-sm text-gray-600 dark:text-gray-300">
+      <span>{{ $event_dates | safeHTML }}</span>
+      {{ with $item.Params.location }}
+        <span class="hidden sm:inline" aria-hidden="true">&middot;</span>
+        <span>{{ . }}</span>
+      {{ end }}
+    </div>
+    {{ with $summary }}
+    {{/* div, not p: multi-paragraph abstracts render as block <p>s, which
+         would force-close a <p> wrapper and escape these styles */}}
+    <div class="mt-2 text-sm text-gray-800 dark:text-gray-200 line-clamp-3">{{ . }}</div>
+    {{ end }}
+  </div>
+</div>

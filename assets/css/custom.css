@@ -1,0 +1,421 @@
+/* Site custom CSS — auto-loaded by the theme after the main Tailwind
+   bundle whenever assets/css/custom.css exists (see the theme's
+   site_head.html), so equal-specificity rules here win.
+
+   Restyle attachment links (the PDF / Code / Dataset / DOI / Cite etc.
+   buttons emitted by the page_links partial on publication rows,
+   project cards, and detail pages) to match the old Bootstrap theme's
+   `btn btn-outline-primary` look: small outlined rounded buttons in the
+   primary color that fill with it on hover, in normal sentence case
+   rather than the new theme's uppercase text links.
+
+   Plain CSS only — NOT processed by Tailwind (so no @apply here) and,
+   as of the minify.disableCSS config setting, NOT minified either:
+   Hugo's built-in CSS minifier (tdewolff) has corrupted hand-authored
+   CSS here before (it stripped the space between two calc() values,
+   dropping a declaration), so this file is served verbatim. The
+   --color-primary-* custom properties are defined globally by the theme
+   and adapt to the selected theme pack. */
+
+/* Root font size, from the theme's typography config: params.yaml sets
+   hugoblox.typography.sizes.base, which the theme emits into :root as
+   --hb-font-size-base -- but nothing in the theme's own CSS consumes it,
+   so this rule applies it to the document. Everything in the theme is
+   rem/em-based, so it scales text, spacing, buttons, and icons
+   proportionally. */
+html {
+  font-size: var(--hb-font-size-base, 1rem);
+  /* Smooth-scroll the navbar's in-page anchor links (/#about, /#projects,
+     ...). scroll-padding-top offsets the sticky header so a section's
+     heading isn't hidden beneath it on arrival. */
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--navbar-height, 4rem);
+}
+
+/* Respect users who prefer reduced motion: jump instead of animate. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Keyboard focus visibility, site-wide: the theme suppresses focus
+   outlines in places (e.g. .hb-attachment-link ships outline-none
+   focus:outline-none), leaving keyboard users with no focus indicator.
+   :focus-visible targets keyboard/assistive navigation only (no ring on
+   mouse clicks), and these unlayered rules beat the theme's layered
+   utilities. */
+:focus-visible {
+  outline: 2px solid var(--color-primary-600);
+  outline-offset: 2px;
+}
+
+.dark :focus-visible {
+  outline-color: var(--color-primary-400);
+}
+
+/* The action buttons (.hb-attachment-link -- publication rows and
+   project cards) compile to `outline-style: none` on both the base
+   class and a nested `&:focus`, specificity (0,2,0) and unlayered, which
+   out-ranks the generic :focus-visible above (0,1,0) -- so no ring
+   showed on keyboard focus. This selector matches that specificity and,
+   loading after the theme bundle, wins on source order (no !important).
+   Pure `outline` shorthand only -- do NOT add an `outline-style` longhand
+   alongside it: mixing shorthand + longhand + var() makes browsers
+   serialize the color/width as empty in DevTools (looks like breakage)
+   and previously tripped the CSS minifier. */
+.hb-attachment-link:focus-visible {
+  outline: 2px solid var(--color-primary-600);
+  outline-offset: 2px;
+}
+
+.dark .hb-attachment-link:focus-visible {
+  outline-color: var(--color-primary-400);
+}
+
+/* Skip-to-content link (baseof override): visually hidden until it
+   receives keyboard focus, then pinned to the top-left so keyboard
+   users can jump past the header nav to <main id="main-content">.
+   Hidden via `transform: translateY(-100%)` from a `top: 0` anchor --
+   NOT a fixed negative `top` -- because translateY(-100%) moves the box
+   up by exactly ITS OWN rendered height, whatever that is. A fixed
+   offset (e.g. top: -3rem) is sized for one line of text; at narrow
+   viewport widths "Skip to main content" wraps onto 2-3 lines, so the
+   box grows taller than the fixed offset could hide and a sliver of it
+   showed at the top of the page with no focus involved. */
+.skip-link {
+  position: absolute;
+  left: 0.5rem;
+  top: 0;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  background-color: var(--color-primary-600);
+  color: #fff;
+  font-weight: 600;
+  transform: translateY(-100%);
+  transition: transform 0.15s ease-in-out;
+}
+
+.skip-link:focus {
+  transform: translateY(0.5rem);
+}
+
+/* Navbar container width: the theme's navbar is full-bleed (just a
+   fixed px-3 padding, no max-width), while every content section is
+   max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 (see the portfolio and
+   resume-biography block overrides). On wide screens that leaves the
+   nav's left/right edges noticeably closer to the viewport edge than
+   the hero/project cards below it. No config knob exists for this
+   (checked site.Params.hugoblox.header), so matching the same
+   max-width + padding scale here via CSS. Note: the publications/
+   conferences sections use a narrower max-w-screen-lg container of
+   their own, so this aligns with the hero/projects width specifically,
+   not literally every section on the page. */
+#site-header .navbar {
+  max-width: 80rem; /* max-w-7xl */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem; /* px-4 */
+  padding-right: 1rem;
+}
+
+@media (min-width: 40rem) { /* sm: */
+  #site-header .navbar {
+    padding-left: 1.5rem; /* sm:px-6 */
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 64rem) { /* lg: */
+  #site-header .navbar {
+    padding-left: 2rem; /* lg:px-8 */
+    padding-right: 2rem;
+  }
+}
+
+/* Button colours: the current pack's primary-600 (rgb 8 94 196) is
+   near-identical to the old Bootstrap "minimal" theme's primary
+   (#1565c0, rgb 21 101 192), so theme variables are used throughout --
+   dark blue outline and text, hover fills with the same blue and turns
+   the text white. The .dark rules below override every colour property
+   set here, so these light values never leak into dark mode. */
+.hb-attachment-link {
+  box-shadow: inset 0 0 0 1px var(--color-primary-600);
+  border-radius: 0.3rem;
+  padding: 0.25rem;
+  margin: 8px 8px 8px 0;
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: 600;
+  font-size: 0.8rem;
+  line-height: var(--tw-leading, var(--text-sm--line-height));
+  color: var(--color-primary-600);
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  /* Flex row so the icon is vertically centered against the label
+     regardless of its size (inline-flex overrides the theme's
+     inline-block; whitespace between icon and label collapses in
+     flex, so gap recreates the separation). */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+}
+
+.hb-attachment-link:hover {
+  background-color: var(--color-primary-600);
+  box-shadow: inset 0 0 0 1px var(--color-primary-600);
+  color: var(--color-white, #fff);
+  text-decoration: none;
+}
+
+/* Dark mode: muted, darker steps of the theme's own primary scale
+   (so they adapt if the theme pack changes). Resting state uses a
+   mid-tone text with a receding dark ring instead of the pale bright
+   primary-400; hover fills with the same muted dark blue. */
+.dark .hb-attachment-link {
+  box-shadow: inset 0 0 0 1px var(--color-primary-800);
+  color: var(--color-primary-400);
+}
+
+.dark .hb-attachment-link:hover {
+  background-color: var(--color-primary-800);
+  box-shadow: inset 0 0 0 1px var(--color-primary-800);
+  color: var(--color-white, #fff);
+  text-decoration: none;
+}
+
+/* Heroicons' outline glyphs (1.5-unit strokes on a 24px grid) blur into
+   sub-pixel strokes at the buttons' 12px em-size, which reads as
+   pixelation. Render them a bit larger with thicker strokes;
+   !important is needed to beat the inline style="height: 1em" the icon
+   partial emits. Filled icons (brands etc.) ignore stroke-width. */
+.hb-attachment-link svg {
+  height: 1.25em !important;
+  stroke-width: 2;
+}
+
+.resume-biography {
+  padding-top: 2rem;
+  padding-bottom: 0;
+}
+
+/* Bio prose: lift Tailwind's `prose` 65ch max-width cap so the bio text
+   fills the full right column and lines up in width with the Education
+   list below it (which now spans the full right column). */
+.resume-biography .prose {
+  max-width: none;
+}
+
+/* Collection blocks' "See all ..." button row (publications + events):
+   the theme gives it mt-10 (2.5rem) and no bottom margin, which reads
+   as belonging to the NEXT section now that section wrappers have zero
+   padding. Pull it toward its own list and push it away from what
+   follows. (Scoped by section id -- the sections' generated widget
+   class is a useless "blox-_" -- and the id out-specifies the mt-10
+   utility.) */
+#publications .mt-10.justify-center,
+#conferences .mt-10.justify-center {
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+/* "See all" buttons: match the bio's social buttons. Light hover gets
+   the same primary tint (replacing the theme's hover:bg-gray-50, which
+   also had no dark counterpart and painted near-white under light gray
+   text in dark mode). Dark resting uses the navbar's semantic
+   header-bg surface instead of the slate-tinted gray-800, and dark
+   hover gets the muted primary tint. */
+#publications .mt-10.justify-center a:hover,
+#conferences .mt-10.justify-center a:hover {
+  background-color: var(--color-primary-50);
+  color: var(--color-primary-600);
+  border-color: var(--color-primary-200);
+}
+
+/* Dark button surface and border: the navbar's header-bg lifted toward
+   white by 6% (surface, roughly GitHub's raised-button dark background)
+   and 30% (border) -- the theme emits no semantic border variable, so
+   both are derived from its header surface and track any future
+   surface override. Used by the see-all buttons here and the bio's
+   social buttons (via dark:bg-[var(--site-btn-surface)] and
+   dark:border-[var(--site-btn-border)]). */
+.dark {
+  --site-btn-surface: color-mix(in srgb, var(--hb-color-header-bg), white 6%);
+  --site-btn-border: color-mix(in srgb, var(--hb-color-header-bg), white 30%);
+}
+
+.dark #publications .mt-10.justify-center a,
+.dark #conferences .mt-10.justify-center a {
+  background-color: var(--site-btn-surface);
+  border-color: var(--site-btn-border);
+}
+
+.dark #publications .mt-10.justify-center a:hover,
+.dark #conferences .mt-10.justify-center a:hover {
+  background-color: var(--color-primary-950);
+  color: var(--color-primary-400);
+  border-color: var(--color-primary-800);
+}
+
+/* Footer: the theme's minimal footer is the only place on the site
+   using the slate palette (text-slate-700 dark:text-slate-200); align
+   it with the gray family used everywhere else (the affiliation-text
+   tone). Unlayered, so it beats the layered utilities.
+
+   Also give it the same max-width + padding scale as the navbar and
+   the Projects section (footer ships with Tailwind's .container class
+   and no horizontal padding at all, so it was flush with the viewport
+   edge -- no config knob exists for this, checked
+   site.Params.hugoblox.footer). */
+footer.container {
+  color: var(--color-gray-700);
+  max-width: 80rem; /* max-w-7xl */
+  padding-left: 1rem; /* px-4 */
+  padding-right: 1rem;
+}
+
+.dark footer.container {
+  color: var(--color-gray-300);
+}
+
+@media (min-width: 40rem) { /* sm: */
+  footer.container {
+    padding-left: 1.5rem; /* sm:px-6 */
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 64rem) { /* lg: */
+  footer.container {
+    padding-left: 2rem; /* lg:px-8 */
+    padding-right: 2rem;
+  }
+}
+
+/* Footer "Build your site" button: same primary-tint hover language
+   (its border-current follows the text colour automatically). The
+   theme's .powered-by a:hover rule underlines footer links -- right
+   for the inline "Hugo Blox Kit" link, wrong for a button. */
+.powered-by a[data-hbx="poweredby_cta"]:hover {
+  background-color: var(--color-primary-50);
+  color: var(--color-primary-600);
+  text-decoration: none;
+}
+
+.dark .powered-by a[data-hbx="poweredby_cta"]:hover {
+  background-color: var(--color-primary-950);
+  color: var(--color-primary-400);
+}
+
+/* Consistent hyperlink styling for content links site-wide: primary
+   colour so they stand out from regular text (primary-600 light /
+   primary-400 dark), normal weight (the theme bolds prose links), no
+   resting underline, and on hover an underline plus a one-step colour
+   shift (darker in light mode, lighter in dark). These rules are
+   unlayered, so they beat the theme's @layer components prose rules
+   regardless of specificity. Contexts covered: markdown/prose bodies
+   (bio, page content), citation title links, list summaries (event
+   rows and archive cards, whose markdown links were previously
+   unstyled), and detail pages' metadata grid (abstract etc.). Action
+   buttons (.hb-attachment-link) and card/heading title links keep
+   their own treatment. */
+.prose a,
+.pub-list-item a:not(.hb-attachment-link),
+.line-clamp-2 a,
+.line-clamp-3 a,
+.max-w-prose.grid a {
+  color: var(--color-primary-600);
+  font-weight: inherit;
+  text-decoration: none;
+}
+
+.dark .prose a,
+.dark .pub-list-item a:not(.hb-attachment-link),
+.dark .line-clamp-2 a,
+.dark .line-clamp-3 a,
+.dark .max-w-prose.grid a {
+  color: var(--color-primary-400);
+}
+
+.prose a:hover,
+.pub-list-item a:not(.hb-attachment-link):hover,
+.line-clamp-2 a:hover,
+.line-clamp-3 a:hover,
+.max-w-prose.grid a:hover {
+  color: var(--color-primary-700);
+  text-decoration: underline;
+}
+
+.dark .prose a:hover,
+.dark .pub-list-item a:not(.hb-attachment-link):hover,
+.dark .line-clamp-2 a:hover,
+.dark .line-clamp-3 a:hover,
+.dark .max-w-prose.grid a:hover {
+  color: var(--color-primary-300);
+}
+
+/* Project card titles: the stretched-link anchor's hit area covers the
+   whole card, so its own :hover fires everywhere on the card. Keying
+   the underline to hovering the title row (h3) restricts it to the
+   link text, while the card-wide colour shift stays (group-hover
+   classes in the portfolio block override). */
+#projects h3:hover a {
+  text-decoration: underline;
+}
+
+/* Project card summaries: tighten the gap between the description and
+   the action links row, and align the text colour with the other
+   summary/abstract text on the page (event rows, citation venues:
+   gray-800/gray-200 -- upstream uses a dimmer gray-600/gray-400).
+   The summary keeps upstream's classes; the id out-specifies them. */
+#projects p.line-clamp-2 {
+  margin-bottom: 0.5rem;
+  color: var(--color-gray-800);
+}
+
+.dark #projects p.line-clamp-2 {
+  color: var(--color-gray-200);
+}
+
+/* Citation entries (publication lists): give the parts a visual
+   hierarchy, aligned with the tones used elsewhere on the page.
+   - Base (authors, year, punctuation): the muted metadata tone used
+     by dates/locations (gray-600 / gray-400) -- the owner's name
+     stays font-semibold within it.
+   - Title link: primary colour from the site link rules, plus medium
+     weight to anchor the entry.
+   - Venue (rendered as <em>): regular body tone (gray-800/gray-200),
+     distinguished from the metadata by colour and its italics. */
+.pub-list-item {
+  color: var(--color-gray-500);
+}
+
+.dark .pub-list-item {
+  /* gray-400, not gray-500: gray-500 on the dark background is only
+     3.9:1 (below WCAG AA 4.5:1); gray-400 is 7.3:1 and still dimmer
+     than the venue's gray-200, so the hierarchy is preserved. */
+  color: var(--color-gray-400);
+}
+
+.pub-list-item a:not(.hb-attachment-link) {
+  font-weight: 500;
+}
+
+.pub-list-item em {
+  color: var(--color-gray-800);
+}
+
+.dark .pub-list-item em {
+  color: var(--color-gray-200);
+}
+
+/* Summary/abstract text in the theme's card view (the /events/ and
+   other archive pages): match the event-row view's gray-800/gray-200
+   pair, brighter than upstream's dimmer zinc in dark mode. (Tailwind
+   emits colour variables as --color-*, not --text-*.) */
+[role="article"] p.line-clamp-3 {
+  color: var(--color-gray-800);
+}
+.dark [role="article"] p.line-clamp-3 {
+  color: var(--color-gray-200);
+}

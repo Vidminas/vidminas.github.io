@@ -1,0 +1,18 @@
+{{/* Site override of modules/blox's article-grid--start.html: the grid
+     container uses max-w-7xl (the page-content width, matching the homepage
+     portfolio/hero sections) instead of upstream's `container
+     max-w-screen-lg`. Two things matter for the /projects/ archive grid to
+     line up with the homepage projects grid:
+       1. Dropped the Tailwind `container` class -- it imposes its own
+          per-breakpoint max-widths that conflict with max-w-7xl.
+       2. Dropped the horizontal padding (was px-8 xl:px-5) -- the
+          collection block's shared body wrapper already applies the
+          px-4 sm:px-6 lg:px-8 page scale, so keeping padding here too
+          double-inset the grid.
+     Only the outer container differs from upstream; the --end fragment is
+     used unchanged (same two-div nesting). */}}
+{{ $columns := .config.columns | default 2 }}
+{{ $len := .config.len | default 2 }}
+{{/* NOTE: dynamic `md:grid-cols-{{$columns}}` class requires Tailwind exception */}}
+<div class="mx-auto py-5 lg:py-8 {{ if eq $len 1 }}max-w-[500px] justify-center{{else}}max-w-7xl {{end}}">
+  <div class="grid gap-10 md:grid-cols-{{$columns}} lg:gap-10">
