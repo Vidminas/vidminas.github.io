@@ -1,0 +1,46 @@
+---
+title: Software Design for Supporting School Teachers' Educational Resource Search
+authors:
+- admin
+date: '2026-03-01'
+publishDate: '2026-08-04T08:42:59.442604Z'
+publication_types:
+- thesis
+publication:
+  name: 'The University of Edinburgh'
+  short_name: ''
+projects:
+- scotland-resources-discoverability
+abstract: School teachers around the world use online resources in their teaching.
+  Their information-seeking strategies are strongly shaped by the flexibility (or
+  rigidity) of the education system in which they work. Rigid education systems prescribe
+  resources while flexible systems allow teachers the freedom to choose or make their
+  own resources. This can help to better adapt to pupils' learning needs but potentially
+  makes lesson preparation more difficult and time-consuming. This thesis explores
+  how teachers in Scotland's Curriculum for Excellence – an education system with
+  flexible and rigid components – search for, use, and share online educational resources,
+  and identifies software design guidelines for supporting teachers' lesson and resource
+  preparation workflows. Interviews with 15 teachers and discussions with 30 experts
+  informed the development of a school education domain specific Teacher Educational
+  Resource Search process model. A review of existing tools clarified commonalities
+  and shortcomings in supporting teachers' needs. Building on these insights, three
+  rounds of iterative user-centred design were conducted with 12 teachers, 14 education
+  experts, and 2 user experience designers. Initial prototypes were refined or discarded
+  based on feedback, culminating in a browser plug-in enhancing Google search results
+  with crowdsourced and AI generated educational metadata. The plug-in served as a
+  research tool to conduct a validation and evaluation study with 20 teachers trying
+  simulated work tasks. The study supports the validity of the Teacher Educational
+  Resource Search process model, including new scenarios when teachers used generative
+  AI tools instead of traditional search, and expands on the strategies teachers commonly
+  use. Teacher feedback on the tools used, including the prototype browser plug-in,
+  led to a set of refined software design guidelines for supporting educational resource
+  search. Overall, the thesis contributes to greater understanding of school teachers'
+  educational resource search, use, and sharing practices in education system context
+  by proposing a validated process model. The research findings are grounded in the
+  experiences of over 40 teachers and 40 experts and help inform the design of software
+  tools supporting educational resource search.
+links:
+- type: source
+  url: https://era.ed.ac.uk/handle/1842/44474
+  label: Edinburgh Research Archive
+---
