@@ -16,18 +16,22 @@ links:
     icon: globe-alt
 ---
 
-This was a project where we banded together with several University of Edinburgh students to create an EdTech start-up.
+This was a project where we banded together with several University of Edinburgh students to create an EdTech start-up, running from October 2020 to June 2022.
 Our aim was to create software to help Scottish school teachers save time.
 Through initial consultations and co-design with teacher volunteers from Facebook groups, we settled on a project idea -- Past Paper Explorer.
+
+I worked as a software developer and business lead, co-organising the running of the start-up with support from Edinburgh Innovations. We secured a £10,000 investment from Old College Capital and hired two student summer interns.
 
 In Scotland, the Scottish Qualifications Authority (SQA) manage standardised exams for all schools at National 5, Higher, and Advanced Higher level.
 Past exam papers are made available publicly in PDF format.
 Teachers use past papers to create revision exercises for their pupils.
 However, searching for keywords or topics or types of questions through individual PDFs is difficult.
 
+I wrote the initial back-end code for the Past Paper Explorer.
 We parsed and indexed the content of past papers in several subjects (initially history, social studies, life sciences, maths, physics).
-This allowed users to easily find questions by subject, topic, year, or keyword.
+This allowed users to easily find questions by subject, topic, year, or keyword, where previously only separate PDF documents were available.
 Each question was also linked to the relevant marking scheme that the SQA also publish.
+At its peak the tool had around 600 daily users.
 
 Building on this, we also started development on the Resource Builder -- another app for creating worksheets from past paper questions, allowing you to reuse and modify questions.
 Unfortunately, due to other commitments and plans, we ceased work on the Altra Past Paper Explorer and Resource Builder.
