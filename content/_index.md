@@ -40,9 +40,12 @@ sections:
     id: projects
     content:
       title: Projects
+      count: 6
       filters:
         folders:
           - projects
+      archive:
+        text: See all projects
     design:
       columns: 2
       animations: false

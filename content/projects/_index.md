@@ -9,6 +9,8 @@ sections:
     content:
       title: Selected Projects
       text: I enjoy making things. Here are a selection of projects that I have worked on over the years.
+      # 0 = show all; without this the collection block defaults to 5 items
+      count: 0
       filters:
         folders:
           - projects
