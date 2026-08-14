@@ -22,6 +22,8 @@ publication:
 hugoblox:
   ids:
     doi: 10.1145/3544548.3581114
+projects:
+- ewada-solid
 links:
 - type: source
   url: https://dl.acm.org/doi/10.1145/3544548.3581114

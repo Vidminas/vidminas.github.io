@@ -15,6 +15,8 @@ publication:
 hugoblox:
   ids:
     doi: 10.1145/3589335.3651251
+projects:
+- ewada-solid
 links:
 - type: source
   url: https://dl.acm.org/doi/10.1145/3589335.3651251
