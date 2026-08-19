@@ -2,7 +2,9 @@
 # Leave the homepage title empty to use the site title
 title: ''
 summary: ''
-date: 2022-10-24
+# Drives `og:updated_time` for the homepage (the theme reads `.Date` for
+# non-page kinds) -- bump this when the homepage content meaningfully changes.
+date: 2026-08-14
 type: landing
 
 sections:
@@ -40,9 +42,12 @@ sections:
     id: projects
     content:
       title: Projects
+      count: 6
       filters:
         folders:
           - projects
+      archive:
+        text: See all projects
     design:
       columns: 2
       animations: false

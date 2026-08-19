@@ -1,0 +1,31 @@
+{{/*
+  SITE ADDITION: emit `og:type`, which the theme never outputs.
+
+  Open Graph treats `og:type` as required; without it consumers fall back to
+  `website` for every page, so publications, projects and talks never carry
+  article semantics in link previews. The theme's `site_head.html` emits
+  og:site_name/url/title/description/image/locale but no og:type (verified
+  against blox@v0.0.0-20260527025321-61f41d3667f1), so this fills the gap via
+  the first-party `head-end` hook rather than overriding a ~270-line partial.
+
+  Mapping:
+    home           -> profile (a personal academic site; identity.type is `person`)
+    single pages   -> article (the theme already emits article:published_time /
+                      article:modified_time for these)
+    everything else-> website (sections, taxonomy terms, list pages)
+
+  Remove this file if the hook's contents ever land upstream.
+*/}}
+{{- $og_type := "website" -}}
+{{- if .IsHome -}}
+  {{- $og_type = "profile" -}}
+{{- else if .IsPage -}}
+  {{- $og_type = "article" -}}
+{{- end -}}
+<meta property="og:type" content="{{ $og_type }}" />
+{{- if .IsHome -}}
+  {{/* `get_author_profile` returns flat keys (name_given / name_family), not a nested map. */}}
+  {{- $profile := partial "functions/get_author_profile" (dict "slug" "admin") -}}
+  {{- with $profile.name_given }}<meta property="profile:first_name" content="{{ . }}" />{{ end -}}
+  {{- with $profile.name_family }}<meta property="profile:last_name" content="{{ . }}" />{{ end -}}
+{{- end -}}
