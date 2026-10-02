@@ -8,7 +8,7 @@
 {{ if $isEvent }}
   {{ $event_dates = partial "functions/get_event_dates" $item }}
 {{ else }}
-  {{ $event_dates = $item.Date | time.Format (site.Params.hugoblox.locale.date_format | default "Jan 2, 2006") }}
+  {{ $event_dates = $item.Date | time.Format (site.Params.hugoblox.locale.date_format | default "2 Jan 2006") }}
 {{ end }}
 {{ $summary := partial "functions/get_summary" $item }}
 {{ $summary = $summary | page.RenderString }}
