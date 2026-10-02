@@ -11,11 +11,14 @@ links:
   - type: site
     label: Informatics OpenCourse
     url: https://opencourse.inf.ed.ac.uk/
+  - type: site
+    label: PTAS project description (archive)
+    url: 'https://web.archive.org/web/20230328122715/https://www.ed.ac.uk/institute-academic-development/learning-teaching/funding/funding/previous-projects/year/october-2022/open-publishing-of-inf1b-course-materials'
   - type: dataset
     label: 'Resources'
     url: https://uoe.sharepoint.com/sites/INF1B2023PTASproject
   - type: video
-    url: 'https://blogs.ed.ac.uk/learning-teaching-conference-2023/oak-session-3/'
+    url: 'https://web.archive.org/web/20260417063425/https://blogs.ed.ac.uk/learning-teaching-conference-2023/oak-session-3/'
   - type: slides
     url: 'https://www.linkedin.com/posts/vidminas_how-to-free-university-material-stockpiles-activity-7083035785091772416-gs26?utm_source=share&utm_medium=member_desktop'
 ---
@@ -28,7 +31,7 @@ This began as "Set Them Free! Open Publishing of INF1B Course Materials", a £2,
 
 I managed a team of four student research assistants on a systematic review of tools for open educational publishing. I then built prototype platforms with the most promising options -- Moodle, Open edX, WordPress, and Drupal -- evaluated them with student focus groups, and gathered staff feedback. That led us to select Drupal as the technology stack best suited to our department.
 
-I presented our findings at the Edinburgh Learning and Teaching Conference.
+I presented our findings at the Edinburgh Learning and Teaching Conference ([archived session page](https://web.archive.org/web/20260417063425/https://blogs.ed.ac.uk/learning-teaching-conference-2023/oak-session-3/)). A copy of the [talk recording](https://media.ed.ac.uk/media/Oak+Session+3/1_dxbthip1/291693182) is available to those with a University of Edinburgh account.
 
 ## Informatics OpenCourse
 
