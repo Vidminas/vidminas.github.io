@@ -14,6 +14,8 @@ links:
   - type: source
     url: https://doi.org/10.7488/era/6991
     label: Thesis (Edinburgh Research Archive)
+  - type: video
+    url: 'https://media.ed.ac.uk/media/Pre-viva+talk%3A+Software+Design+for+Supporting+School+Teachers+Educational+Resource+Search/1_w6brytgq'
 ---
 
 In my PhD project, I investigated the needs and challenges of primary and secondary school teachers in Scotland involved in finding, using, and sharing educational resources online. I did the research based in the Institute for Language, Cognition and Computation at the School of Informatics, University of Edinburgh, supervised by Professor Fiona McNeill and Professor Judy Robertson. My PhD was awarded in March 2026.
@@ -31,3 +33,5 @@ The work ran in three stages:
 The plug-in then served as a research tool for a validation and evaluation study with 20 teachers working through simulated work tasks. The study supported the validity of the Teacher Educational Resource Search process model -- including new scenarios where teachers used generative AI tools instead of traditional search -- and expanded on the strategies teachers commonly use. Teacher feedback on the tools, including the prototype plug-in, led to a refined set of software design guidelines for supporting educational resource search.
 
 Overall, the thesis contributes a validated process model of school teachers' educational resource search, use, and sharing practices in education system context. The findings are grounded in the experiences of over 40 teachers and 40 experts.
+
+A recording of my pre-viva talk, "Software Design for Supporting School Teachers' Educational Resource Search", is available on [Media Hopper](https://media.ed.ac.uk/media/Pre-viva+talk%3A+Software+Design+for+Supporting+School+Teachers+Educational+Resource+Search/1_w6brytgq).
