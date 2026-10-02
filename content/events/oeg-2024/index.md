@@ -12,7 +12,7 @@ image:
   caption: ''
   focal_point: ''
 abstract: |2-
-  Supported an expert panel discussion and showcased video with interview excerpts about the meanings of "open" AI in open education.
+  Supported the expert panel discussion "Exploring the Notions of Open AI in Open Education" on 15 November and showcased video with interview excerpts about the meanings of "open" AI in open education.
 
   [Session details](https://oeglobal2024.sched.com/event/1pHRs/exploring-the-notions-of-open-ai-in-education-id-29)
 

@@ -15,4 +15,6 @@ abstract: |2-
   Co-authored the full paper ["Agency in Child–AI Interaction: A Review of How It Is Conceptualised, Studied, and Supported in HCI"](https://doi.org/10.1145/3773077.3806105), presented by Isobel Voysey at the 25th Interaction Design and Children conference.
 
   The paper reviews 25 recent HCI studies and finds that children's agency is rarely defined explicitly, with conceptualisations varying between something children innately possess and something to be developed. It maps how researchers observe agency -- through children's planning and self-regulation, asserting control over AI systems, and critique and re-design of the status quo -- and the epistemic, interactional, social, and motivational conditions reported to enable or constrain it.
+
+  I also presented at two workshops co-located with the conference: the short paper "Side-by-side LLM Outputs Encourage Choice, Supporting Teens' Agency" at the C3AI '26 workshop, and the poster "Side-by-side LLM Outputs Support Choice and Teens' Agency" at the Designing Ethical and Rights-Respecting Child-Centred AI for Learning workshop.
 ---

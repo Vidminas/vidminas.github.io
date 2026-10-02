@@ -1,10 +1,10 @@
 ---
 title: Open Educational Resources 23
-date: '2023-04-03'
+date: '2023-04-04'
 event_url: 'https://altc.alt.ac.uk/oer23/'
 location: Inverness, Scotland
-event_start: '2023-04-03'
-event_end: '2023-04-07'
+event_start: '2023-04-04'
+event_end: '2023-04-06'
 event_all_day: true
 authors:
 - admin
