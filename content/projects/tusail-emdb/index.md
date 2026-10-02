@@ -12,7 +12,10 @@ tags:
 date: '2023-05-10T00:00:00Z'
 links:
   - type: slides
-    url: 'https://uoe.sharepoint.com/:p:/r/sites/DRSFacilitation/Shared%20Documents/Digital%20Research%20Ambassadors%20-%20previous%20projects/Ambassador%20Projects%202022-2023/Vid-Development%20of%20an%20Experimental%20Measurements%20Database%20for%20granular%20materials.pptx?d=wb8510c2b9e6c4c31a26ad620a049869b&csf=1&web=1&e=CWO3AZ'
+    url: 'drs-2023-slides.pdf'
+  - type: pdf
+    label: Report
+    url: 'drs-2023-report.pdf'
 ---
 
 Prof. Jin Ooi, Chair of Particulate Solid Mechanics, Institute for Infrastructure and Environment, School of Engineering:
