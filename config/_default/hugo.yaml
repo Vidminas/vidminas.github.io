@@ -71,5 +71,18 @@ markup:
     lineNos: false
 security:
   _merge: deep
+  # Hugo 0.165.0 dropped `tailwindcss` from the default exec allowlist
+  # (CVE-2026-89259), so css.TailwindCSS in the theme's css.html must be
+  # opted into explicitly. Setting `allow` replaces the default list
+  # rather than extending it: this is Hugo 0.167's defaults plus
+  # `^tailwindcss$`.
+  exec:
+    allow:
+      - ^(dart-)?sass$
+      - ^go$
+      - ^git$
+      - ^node$
+      - ^postcss$
+      - ^tailwindcss$
 sitemap:
   _merge: deep
